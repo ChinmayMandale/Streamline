@@ -31,7 +31,7 @@ public class AdminServiceImpl implements UserDetailsService {
         return new org.springframework.security
                 .core.userdetails.User(admin.getAdminName(), admin.getPassword(),
                 admin.isEnabled(), true, true,
-                true, getAuthorities("USER"));
+                true, getAuthorities("ADMIN"));
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(String role) {
