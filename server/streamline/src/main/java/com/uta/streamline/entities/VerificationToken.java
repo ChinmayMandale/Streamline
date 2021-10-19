@@ -21,5 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
         private String token;
         @OneToOne(fetch = LAZY)
         private User user;
+        @OneToOne(fetch = LAZY)
+        private Admin admin;
         private Instant expiryDate;
     }

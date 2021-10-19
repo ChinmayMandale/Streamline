@@ -4,10 +4,12 @@ import com.uta.streamline.dto.AuthenticationResponse;
 import com.uta.streamline.dto.LoginRequest;
 import com.uta.streamline.dto.RefreshTokenRequest;
 import com.uta.streamline.dto.RegisterRequest;
+import com.uta.streamline.entities.Admin;
 import com.uta.streamline.entities.NotificationEmail;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.entities.VerificationToken;
 import com.uta.streamline.exceptions.StreamlineException;
+import com.uta.streamline.repository.AdminRepository;
 import com.uta.streamline.repository.UserRepository;
 import com.uta.streamline.repository.VerificationTokenRepository;
 import com.uta.streamline.security.JwtProvider;
@@ -32,6 +34,7 @@ import java.util.UUID;
 public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final AdminRepository adminRepository;
     private final VerificationTokenRepository verificationTokenRepository;
     private final MailService mailService;
     private final AuthenticationManager authenticationManager;
@@ -68,6 +71,13 @@ public class AuthService {
         User user = userRepository.findByUserName(username).orElseThrow(() -> new StreamlineException("User not found with name - " + username));
         user.setEnabled(true);
         userRepository.save(user);
+    }
+
+    private void fetchAdminAndEnable(VerificationToken verificationToken) {
+        String adminName = verificationToken.getAdmin().getAdminName();
+        Admin admin = adminRepository.findByAdminName(adminName).orElseThrow(() -> new StreamlineException("Admin not found with name - " + adminName));
+        admin.setEnabled(true);
+        adminRepository.save(admin);
     }
 
     private String generateVerificationToken(User user) {
