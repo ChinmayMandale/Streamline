@@ -22,6 +22,7 @@ public class User {
     private String ticketId;
     private String password;
     private String projectId;
+    private String email;
     private Instant created;
     private boolean enabled;
 }
