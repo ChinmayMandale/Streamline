@@ -13,7 +13,7 @@ import { throwError } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+  loginForm: any;
   loginRequestPayload: LoginRequestPayload;
   registerSuccessMessage: string = "";
   isError: boolean = false;
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.isError = false;
       this.router.navigateByUrl('');
       this.toastr.success('Login Successful');
-    }, error => {
+    }, (error:any) => {
       this.isError = true;
       throwError(error);
     });
