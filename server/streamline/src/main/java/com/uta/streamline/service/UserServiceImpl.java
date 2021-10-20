@@ -3,6 +3,7 @@ package com.uta.streamline.service;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Primary
 public class UserServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
