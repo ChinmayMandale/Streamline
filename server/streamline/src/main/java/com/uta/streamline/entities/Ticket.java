@@ -18,16 +18,16 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketId;
     private Date createDate;
-    private int estimatedTime;
-    private int actualTime;
+    private Integer estimatedTime;
+    private Integer actualTime;
     @Enumerated (EnumType.STRING)
     private Status status;
     private Date dueDate;
     @OneToOne
-    @JoinColumn (name = "userId")
+    @JoinColumn (name = "assignee_userid")
     private User assignee;
     @OneToOne
-    @JoinColumn (name = "userId")
+    @JoinColumn (name = "assigned_to_userid")
     private User assignedTo;
     private String summary;
     private String description;
