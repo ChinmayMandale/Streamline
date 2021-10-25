@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../shared/auth.service';
 import { LoginRequestPayload } from './login-request.payload';
 
 @Component({
@@ -12,7 +13,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginRequestPayload: LoginRequestPayload;
 
-  constructor() {
+  constructor(private authService: AuthService) {
+    this.loginRequestPayload = {
+      username:'',
+      password:''
+    };
    }
 
   ngOnInit() {
@@ -22,12 +27,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // login() {
-  //   this.loginRequestPayload.username = this.loginForm.get('username').value;
-  //   this.loginRequestPayload.password = this.loginForm.get('password').value;
+   login() {
+     this.loginRequestPayload.username = this.loginForm.get('username').value;
+    this.loginRequestPayload.password = this.loginForm.get('password').value;
 
-  //   this.authService.login(this.loginRequestPayload).subscribe(data => {
-  //     console.log('Login successful');
-  //   });
-  // }
+     this.authService.login(this.loginRequestPayload).subscribe(data => {
+       console.log('Login successful');
+     });
+   }
 }
