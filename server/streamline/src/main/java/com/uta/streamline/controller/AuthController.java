@@ -23,9 +23,12 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
-        authService.signup(registerRequest);
-        return new ResponseEntity<>("User Registration Successful",
-                HttpStatus.OK);
+        if (authService.signup(registerRequest)) {
+            return new ResponseEntity<>("User Registration Successful",
+                    HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Unable to register User with username - " + registerRequest.getUsername(),
+                HttpStatus.CONFLICT);
     }
 
     @GetMapping("/accountVerification/{token}")

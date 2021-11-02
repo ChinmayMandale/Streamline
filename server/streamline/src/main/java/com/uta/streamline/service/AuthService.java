@@ -41,7 +41,11 @@ public class AuthService {
     private final JwtProvider jwtProvider;
     private final RefreshTokenService refreshTokenService;
 
-    public void signup(RegisterRequest registerRequest) {
+    public boolean signup(RegisterRequest registerRequest) {
+        Optional<User> optional = userRepository.findByUserName(registerRequest.getUsername());
+        if (optional.isPresent()) {
+            return false;
+        }
         User user = new User();
         user.setUserName(registerRequest.getUsername());
         user.setEmail(registerRequest.getEmail());
@@ -56,6 +60,7 @@ public class AuthService {
                 user.getEmail(), "Thank you for signing up to Streamline Project Management tool, " +
                 "please click on the below url to activate your account : " +
                 "http://localhost:8080/api/auth/accountVerification/" + token));
+        return true;
     }
 
     @Transactional(readOnly = true)

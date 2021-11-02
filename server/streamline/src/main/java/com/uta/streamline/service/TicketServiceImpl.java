@@ -19,7 +19,7 @@ public class TicketServiceImpl {
     private final TicketRepository ticketRepository;
 
     public TicketDetails createOrUpdate(TicketDetails ticketDetails) {
-        Ticket ticket = ticketRepository.getById(ticketDetails.getTicketId());
+        Ticket ticket = null;
         if (!Objects.isNull(ticketDetails.getTicketId())) {
             ticket = ticketRepository.getById(ticketDetails.getTicketId());
         }

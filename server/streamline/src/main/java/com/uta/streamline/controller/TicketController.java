@@ -18,7 +18,7 @@ public class TicketController {
         return ticketService.createOrUpdate(ticketDetails);
     }
 
-    @GetMapping("/deleteTicket/{ticketId}")
+    @DeleteMapping("/deleteTicket/{ticketId}")
     public void deleteTicket(@PathVariable String ticketId) {
         ticketService.deleteTicket(Long.parseLong(ticketId));
     }
