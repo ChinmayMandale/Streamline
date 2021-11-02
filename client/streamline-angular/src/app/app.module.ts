@@ -7,11 +7,13 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import { AuthModule } from './auth/auth.module';
+import { TicketComponent } from './ticket/ticket.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    TicketComponent,
   ],
   imports: [
     BrowserModule,
