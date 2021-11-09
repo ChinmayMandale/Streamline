@@ -3,7 +3,7 @@
     <body>
         <div class="row justify-content-center">
             <h4>Create New Issue</h4>
-            <form [formGroup]="editTicketForm" action="" method="post">
+            <form [formGroup]="editTicketForm" (ngSubmit)="submit()">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label>Summary :</label>
@@ -22,7 +22,12 @@
                     </div>
                     <div class="form-group row">
                         <label>Assignee :</label>
-                        <input name="assignee" type="text" id="assignee" [formControlName]="'assignee'">
+                        <select [formControlName]="'assignee'" id="assignee">
+                            <option value="default">----</option>
+                            <option *ngFor="let user of assignedToUsers" [value]="user">
+                                {{user}}
+                            </option>
+                        </select>
                         <br /><br />
                     </div>
                     <div class="form-group row">
@@ -39,7 +44,7 @@
                         <label>Status :</label>
                         <select [formControlName]="'status'" id="status">
                             <option value="default">----</option>
-                            <option *ngFor="let val of statusValues" [value]="val">
+                            <option *ngFor="let val of statusValues" [ngValue]="val">
                                 {{val}}
                             </option>
                         </select>
@@ -49,7 +54,7 @@
                         <label>Priority :</label>
                         <select [formControlName]="'priority'" id="priority">
                             <option value="default">----</option>
-                            <option *ngFor="let val of priorityValues" [value]="val">
+                            <option *ngFor="let val of priorityValues" [ngValue]="val">
                                 {{val}}
                             </option>
                         </select>
@@ -79,7 +84,7 @@
                     </div>
                     <div class="form-group row">
                         <label>Please upload attachments if any</label><br /><br />
-                        <input type="file" name="attachment" id="attachment" [formControlName]="'attachment'"><br /><br />
+                        <input type="file" (change)="onFileChange($event)" name="attachment" id="attachment" [formControlName]="'attachment'"><br /><br />
                     </div>
                 </div>
                 <div class="modal-footer">

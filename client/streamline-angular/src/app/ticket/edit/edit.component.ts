@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { CreateEditTicketPayload } from '../shared/create-edit-ticket.payload';
 
 @Component({
   selector: 'app-edit',
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class EditComponent implements OnInit {
   editTicketForm: FormGroup;
+  createEditTicketPayload: CreateEditTicketPayload;
   priorityValues : ['high','medium','low'];
   statusValues : ['open','inprogress','closed'];
   assignedToUsers : ['sanjoli','sruthi'];
@@ -21,8 +22,8 @@ export class EditComponent implements OnInit {
       projects: new FormControl('', Validators.required),
       assignee: new FormControl('', Validators.required),
       assignedTo: new FormControl('', Validators.required),
-      status: new FormControl(['open','inprogress','closed'], Validators.required),
-      priority: new FormControl(['high','medium','low'], Validators.required),
+      status: new FormControl('', Validators.required),
+      priority: new FormControl('', Validators.required),
       createDate: new FormControl('', Validators.required),
       estimatedTime: new FormControl('', Validators.required),
       actualTime: new FormControl('', Validators.required),
@@ -31,4 +32,25 @@ export class EditComponent implements OnInit {
     });
   }
 
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const attachment = event.target.files[0];
+      this.editTicketForm.patchValue({
+        fileSource: attachment
+      });
+    }
+  }
+
+  submit() {
+    this.createEditTicketPayload.summary = this.editTicketForm.get('summary').value;
+    this.createEditTicketPayload.assignee = this.editTicketForm.get('assignee').value;
+    this.createEditTicketPayload.assignedTo = this.editTicketForm.get('assignedTo').value;
+    this.createEditTicketPayload.createDate = this.editTicketForm.get('createDate').value;
+    this.createEditTicketPayload.description = this.editTicketForm.get('description').value;
+    this.createEditTicketPayload.dueDate = this.editTicketForm.get('dueDate').value;
+    this.createEditTicketPayload.estimatedTime = this.editTicketForm.get('estimatedTime').value;
+    this.createEditTicketPayload.actualTime = this.editTicketForm.get('actualTime').value;
+    this.createEditTicketPayload.priority = this.editTicketForm.get('priority').value;
+    this.createEditTicketPayload.status = this.editTicketForm.get('status').value;
+  }
 }
