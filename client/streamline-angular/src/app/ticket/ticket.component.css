@@ -1,9 +1,10 @@
-header{
+body{
+   background-color: white;/* steelblue; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: larger;
+  font-weight: bolder;
+}
 
-    border-radius: 1px solid;
-  
-  }
-  
   .reddit-icon-svg{
   
     height: 50px;
@@ -16,7 +17,7 @@ header{
   
   .ticket-details{
       padding: 100px 100px;
-  }
+   }
   
   .reddit-text{
   
@@ -37,3 +38,14 @@ header{
     text-decoration: none;
   
   }
+
+table{
+  position: center;
+  flex-direction: left;
+  width: 50%;
+  border-spacing: 2em;
+}
+
+ticket-details{
+  display: none;
+}
