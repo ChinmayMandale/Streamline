@@ -17,6 +17,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CommonModule } from '@angular/common';
 
+import { EditComponent } from './ticket/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     TicketComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
