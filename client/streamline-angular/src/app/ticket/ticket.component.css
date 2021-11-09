@@ -39,13 +39,17 @@ body{
   
   }
 
-table{
-  position: center;
-  flex-direction: left;
-  width: 50%;
-  border-spacing: 2em;
+.details{
+  width: 30em;
 }
 
-ticket-details{
-  display: none;
+.description{
+  float: left;
+}
+
+#ticket-details{
+  text-align: center;
+  border-width: 5px;
+  float: right;
+  padding: 1em;
 }
