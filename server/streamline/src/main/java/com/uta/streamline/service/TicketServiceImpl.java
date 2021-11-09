@@ -5,6 +5,7 @@ import com.uta.streamline.entities.Ticket;
 import com.uta.streamline.enums.Priority;
 import com.uta.streamline.enums.Status;
 import com.uta.streamline.repository.TicketRepository;
+import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -18,12 +19,13 @@ import java.util.Optional;
 @AllArgsConstructor
 public class TicketServiceImpl {
     private final TicketRepository ticketRepository;
+    private final UserServiceImpl userService;
 
     public TicketDetails create(TicketDetails ticketDetails) {
         Ticket ticket = new Ticket();
 
-        ticket.setAssignee(ticketDetails.getAssignee());
-        ticket.setAssignedTo(ticketDetails.getAssignedTo());
+        ticket.setAssignee(userService.findByUsername(ticketDetails.getAssignee()));
+        ticket.setAssignedTo(userService.findByUsername(ticketDetails.getAssignedTo()));
         ticket.setCreateDate(ticketDetails.getCreateDate());
         ticket.setDescription(ticketDetails.getDescription());
         ticket.setDueDate(ticketDetails.getDueDate());
@@ -46,8 +48,8 @@ public class TicketServiceImpl {
         else {
             ticket = new Ticket();
         }
-        ticket.setAssignee(ticketDetails.getAssignee());
-        ticket.setAssignedTo(ticketDetails.getAssignedTo());
+        ticket.setAssignee(userService.findByUsername(ticketDetails.getAssignee()));
+        ticket.setAssignedTo(userService.findByUsername(ticketDetails.getAssignedTo()));
         ticket.setCreateDate(ticketDetails.getCreateDate());
         ticket.setDescription(ticketDetails.getDescription());
         ticket.setDueDate(ticketDetails.getDueDate());
@@ -103,8 +105,8 @@ public class TicketServiceImpl {
         ticketDetails.setTicketId(ticket.getTicketId());
         ticketDetails.setActualTime(ticket.getActualTime());
         ticketDetails.setEstimatedTime(ticket.getEstimatedTime());
-        ticketDetails.setAssignedTo(ticket.getAssignedTo());
-        ticketDetails.setAssignee(ticket.getAssignee());
+        ticketDetails.setAssignee(ticket.getAssignee().getUserName());
+        ticketDetails.setAssignedTo(ticket.getAssignedTo().getUserName());
         ticketDetails.setPriority(ticket.getPriority().name());
         ticketDetails.setStatus(ticket.getStatus().name());
         ticketDetails.setDescription(ticket.getDescription());
