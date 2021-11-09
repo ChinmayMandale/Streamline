@@ -7,6 +7,7 @@ import com.uta.streamline.enums.Status;
 import com.uta.streamline.repository.TicketRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,25 @@ import java.util.Optional;
 @AllArgsConstructor
 public class TicketServiceImpl {
     private final TicketRepository ticketRepository;
+
+    public TicketDetails create(TicketDetails ticketDetails) {
+        Ticket ticket = new Ticket();
+
+        ticket.setAssignee(ticketDetails.getAssignee());
+        ticket.setAssignedTo(ticketDetails.getAssignedTo());
+        ticket.setCreateDate(ticketDetails.getCreateDate());
+        ticket.setDescription(ticketDetails.getDescription());
+        ticket.setDueDate(ticketDetails.getDueDate());
+        ticket.setEstimatedTime(ticketDetails.getEstimatedTime());
+        ticket.setActualTime(ticketDetails.getActualTime());
+        ticket.setPriority(Priority.HIGH);
+        ticket.setStatus(Status.OPEN);
+        ticket.setSummary(ticketDetails.getSummary());
+
+        Ticket createdTicket = ticketRepository.save(ticket);
+        ticketDetails.setTicketId(createdTicket.getTicketId());
+        return ticketDetails;
+    }
 
     public TicketDetails createOrUpdate(TicketDetails ticketDetails) {
         Ticket ticket = null;
@@ -40,6 +60,15 @@ public class TicketServiceImpl {
         Ticket createdTicket = ticketRepository.save(ticket);
         ticketDetails.setTicketId(createdTicket.getTicketId());
         return ticketDetails;
+    }
+
+    public List<TicketDetails> getAllTickets() {
+        List<Ticket> tickets = ticketRepository.findAll();
+        List<TicketDetails> ticketDetailsList = new ArrayList<>();
+        for (Ticket ticket : tickets) {
+            ticketDetailsList.add(mapTicketToTicketDetails(ticket));
+        }
+        return ticketDetailsList;
     }
 
     public List<TicketDetails> getTicketsByAssignee(Long userId) {

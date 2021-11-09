@@ -15,12 +15,18 @@ public class TicketController {
 
     @PostMapping("/createOrUpdateTicket")
     public TicketDetails createOrUpdateTicket(@RequestBody TicketDetails ticketDetails) {
-        return ticketService.createOrUpdate(ticketDetails);
+        return ticketService.create(ticketDetails);
     }
 
     @DeleteMapping("/deleteTicket/{ticketId}")
     public void deleteTicket(@PathVariable String ticketId) {
         ticketService.deleteTicket(Long.parseLong(ticketId));
+    }
+
+
+    @GetMapping("/getAllTickets/")
+    public List<TicketDetails> getAllTickets() {
+        return ticketService.getAllTickets();
     }
 
     @GetMapping("/getTicketDetails/{ticketId}")
