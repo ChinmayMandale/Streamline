@@ -10,10 +10,10 @@ import { CreateEditTicketPayload } from '../shared/create-edit-ticket.payload';
 export class EditComponent implements OnInit {
   editTicketForm: FormGroup;
   createEditTicketPayload: CreateEditTicketPayload;
-  priorityValues : ['high','medium','low'];
-  statusValues : ['open','inprogress','closed'];
-  assignedToUsers : ['sanjoli','sruthi'];
-  projectValues : ['test1','test2'];
+  priorityValues = ['high','medium','low'];
+  statusValues = ['open','inprogress','closed'];
+  assignedToUsers = ['sanjoli','sruthi'];
+  projectValues = ['test1','test2'];
   constructor() { }
 
   ngOnInit(): void {
