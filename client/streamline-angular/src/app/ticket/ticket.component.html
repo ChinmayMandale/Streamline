@@ -3,11 +3,13 @@
   <div id="ticket-details">
     <table class="details" border="1">
       <h5 align="right"><b>Ticket Details</b></h5>
+      <a routerLink="/editTicket" class="float-right sign-up mr-2">Edit Ticket</a>
+
       <tr>  
         <td>Project Name  </td><td><!--<input type="text">-->Unassigned</td>
       </tr> 
       <tr>  
-        <td>Create Date </td><td><input type="date" rows:50 columns:50 placeholder="mm/dd/yyyy"></td>
+        <td>Create Date </td><td><!--<input type="text">-->Unassigned</td>
       </tr>
       <tr>  
         <td>Assignee </td><td><!--<input type="text">-->Unassigned</td>
@@ -39,4 +41,12 @@
   </table>
 </div>
 
+<div id="comments-section">
+  <table class="comments">
+    <dl>
+      <h4>Comments</h4>
+      <input type="text" placeholder="Add a comment...">
+    </dl>
+  </table>
+</div>
 </body>
