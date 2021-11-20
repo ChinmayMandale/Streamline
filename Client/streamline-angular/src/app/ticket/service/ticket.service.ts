@@ -13,7 +13,11 @@ export class TicketService {
 
   createEditTicket(createEditTicketPayload: CreateEditTicketPayload): Observable<any> {
     return this.httpClient.post('http://localhost:8080/api/ticket/createOrUpdateTicket', 
-    createEditTicketPayload, { responseType: 'text' });
+    createEditTicketPayload);
+  }
+
+  getAllTickets(): Observable<Array<CreateEditTicketPayload>> {
+    return this.httpClient.get<Array<CreateEditTicketPayload>>('http://localhost:8080/api/ticket/getAllTickets');
   }
 
 }

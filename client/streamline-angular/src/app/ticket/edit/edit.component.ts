@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TicketService } from '../service/ticket.service';
 import { CreateEditTicketPayload } from '../shared/create-edit-ticket.payload';
 
 @Component({
@@ -14,7 +15,22 @@ export class EditComponent implements OnInit {
   statusValues = ['open','inprogress','closed'];
   assignedToUsers = ['sanjoli','sruthi'];
   projectValues = ['test1','test2'];
-  constructor() { }
+
+  constructor(private ticketService: TicketService) { 
+    this.createEditTicketPayload = {
+      ticketId: '',
+      summary: '',
+      assignedTo: '',
+      assignee: '',
+      createDate: new Date,
+      estimatedTime: 0,
+      actualTime: 0,
+      description: '',
+      dueDate: new Date,
+      priority: '',
+      status: ''
+    };
+  }
 
   ngOnInit(): void {
     this.editTicketForm = new FormGroup({
@@ -25,6 +41,7 @@ export class EditComponent implements OnInit {
       status: new FormControl('', Validators.required),
       priority: new FormControl('', Validators.required),
       createDate: new FormControl('', Validators.required),
+      dueDate: new FormControl('', Validators.required),
       estimatedTime: new FormControl('', Validators.required),
       actualTime: new FormControl('', Validators.required),
       attachment: new FormControl('', Validators.required),
@@ -52,5 +69,9 @@ export class EditComponent implements OnInit {
     this.createEditTicketPayload.actualTime = this.editTicketForm.get('actualTime').value;
     this.createEditTicketPayload.priority = this.editTicketForm.get('priority').value;
     this.createEditTicketPayload.status = this.editTicketForm.get('status').value;
+
+    this.ticketService.createEditTicket(this.createEditTicketPayload).subscribe(res => {
+      console.log(res);
+    })
   }
 }

@@ -5,8 +5,10 @@ import com.uta.streamline.entities.Ticket;
 import com.uta.streamline.enums.Priority;
 import com.uta.streamline.enums.Status;
 import com.uta.streamline.repository.TicketRepository;
+import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,26 @@ import java.util.Optional;
 @AllArgsConstructor
 public class TicketServiceImpl {
     private final TicketRepository ticketRepository;
+    private final UserServiceImpl userService;
+
+    public TicketDetails create(TicketDetails ticketDetails) {
+        Ticket ticket = new Ticket();
+
+        ticket.setAssignee(userService.findByUsername(ticketDetails.getAssignee()));
+        ticket.setAssignedTo(userService.findByUsername(ticketDetails.getAssignedTo()));
+        ticket.setCreateDate(ticketDetails.getCreateDate());
+        ticket.setDescription(ticketDetails.getDescription());
+        ticket.setDueDate(ticketDetails.getDueDate());
+        ticket.setEstimatedTime(ticketDetails.getEstimatedTime());
+        ticket.setActualTime(ticketDetails.getActualTime());
+        ticket.setPriority(Priority.HIGH);
+        ticket.setStatus(Status.OPEN);
+        ticket.setSummary(ticketDetails.getSummary());
+
+        Ticket createdTicket = ticketRepository.save(ticket);
+        ticketDetails.setTicketId(createdTicket.getTicketId());
+        return ticketDetails;
+    }
 
     public TicketDetails createOrUpdate(TicketDetails ticketDetails) {
         Ticket ticket = null;
@@ -26,8 +48,8 @@ public class TicketServiceImpl {
         else {
             ticket = new Ticket();
         }
-        ticket.setAssignee(ticketDetails.getAssignee());
-        ticket.setAssignedTo(ticketDetails.getAssignedTo());
+        ticket.setAssignee(userService.findByUsername(ticketDetails.getAssignee()));
+        ticket.setAssignedTo(userService.findByUsername(ticketDetails.getAssignedTo()));
         ticket.setCreateDate(ticketDetails.getCreateDate());
         ticket.setDescription(ticketDetails.getDescription());
         ticket.setDueDate(ticketDetails.getDueDate());
@@ -40,6 +62,15 @@ public class TicketServiceImpl {
         Ticket createdTicket = ticketRepository.save(ticket);
         ticketDetails.setTicketId(createdTicket.getTicketId());
         return ticketDetails;
+    }
+
+    public List<TicketDetails> getAllTickets() {
+        List<Ticket> tickets = ticketRepository.findAll();
+        List<TicketDetails> ticketDetailsList = new ArrayList<>();
+        for (Ticket ticket : tickets) {
+            ticketDetailsList.add(mapTicketToTicketDetails(ticket));
+        }
+        return ticketDetailsList;
     }
 
     public List<TicketDetails> getTicketsByAssignee(Long userId) {
@@ -74,8 +105,8 @@ public class TicketServiceImpl {
         ticketDetails.setTicketId(ticket.getTicketId());
         ticketDetails.setActualTime(ticket.getActualTime());
         ticketDetails.setEstimatedTime(ticket.getEstimatedTime());
-        ticketDetails.setAssignedTo(ticket.getAssignedTo());
-        ticketDetails.setAssignee(ticket.getAssignee());
+        ticketDetails.setAssignee(ticket.getAssignee().getUserName());
+        ticketDetails.setAssignedTo(ticket.getAssignedTo().getUserName());
         ticketDetails.setPriority(ticket.getPriority().name());
         ticketDetails.setStatus(ticket.getStatus().name());
         ticketDetails.setDescription(ticket.getDescription());

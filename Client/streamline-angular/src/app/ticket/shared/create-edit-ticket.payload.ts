@@ -4,8 +4,8 @@ export interface CreateEditTicketPayload {
     estimatedTime: number;
     actualTime: number;
     status: string;
-    assignedTo: any;
-    assignee: any;
+    assignedTo: string;
+    assignee: string;
     dueDate: Date;
     summary: string;
     description: string;

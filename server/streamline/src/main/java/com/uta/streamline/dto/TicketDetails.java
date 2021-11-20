@@ -17,8 +17,8 @@ public class TicketDetails {
     private int actualTime;
     private String status;
     private Date dueDate;
-    private User assignee;
-    private User assignedTo;
+    private String assignee;
+    private String assignedTo;
     private String summary;
     private String description;
     private String priority;
