@@ -18,6 +18,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { CommonModule } from '@angular/common';
 
 import { EditComponent } from './ticket/edit/edit.component';
+import { KanbanComponent } from './kanban/kanban.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditComponent } from './ticket/edit/edit.component';
     TicketComponent,
     SignupComponent,
     LoginComponent,
-    EditComponent
+    EditComponent,
+    KanbanComponent
   ],
   imports: [
     BrowserModule,

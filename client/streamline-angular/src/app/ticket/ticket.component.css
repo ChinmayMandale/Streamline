@@ -53,3 +53,10 @@ body{
   float: right;
   padding: 1em;
 }
+
+#ticket-description{
+  margin-top: 10px;
+  float: left;
+  text-align: left;
+  margin-left: 10px;
+}
