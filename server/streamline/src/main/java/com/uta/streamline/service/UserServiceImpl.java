@@ -1,5 +1,7 @@
 package com.uta.streamline.service;
 
+import com.uta.streamline.dto.ProjectDetails;
+import com.uta.streamline.entities.Project;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;

@@ -33,4 +33,7 @@ public class Ticket {
     private String description;
     @Enumerated (EnumType.STRING)
     private Priority priority;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 }
