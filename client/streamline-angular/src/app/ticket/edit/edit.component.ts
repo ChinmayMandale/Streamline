@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { UserDTO } from 'src/app/shared/UserDTO';
 import { TicketService } from '../service/ticket.service';
 import { CreateEditTicketPayload } from '../shared/create-edit-ticket.payload';
 
@@ -9,14 +11,17 @@ import { CreateEditTicketPayload } from '../shared/create-edit-ticket.payload';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+
+  users: Array<UserDTO>;
   editTicketForm: FormGroup;
   createEditTicketPayload: CreateEditTicketPayload;
   priorityValues = ['high','medium','low'];
   statusValues = ['open','inprogress','closed'];
-  assignedToUsers = ['sanjoli','sruthi'];
+  assignedToUsers = [];
   projectValues = ['test1','test2'];
 
-  constructor(private ticketService: TicketService) { 
+  constructor(private ticketService: TicketService,
+    private userService: UserService,) { 
     this.createEditTicketPayload = {
       ticketId: '',
       summary: '',
@@ -33,6 +38,14 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userService.getAllUsers().subscribe(res => {
+      this.users = res;
+      this.users.forEach(user => {
+        this.assignedToUsers.push(user.userName);
+      })
+    })
+
     this.editTicketForm = new FormGroup({
       summary: new FormControl('', Validators.required),
       projects: new FormControl('', Validators.required),
