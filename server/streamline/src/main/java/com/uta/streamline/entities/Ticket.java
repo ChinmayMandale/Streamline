@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,4 +37,7 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Comment> comments;
 }

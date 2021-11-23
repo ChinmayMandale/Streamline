@@ -1,6 +1,7 @@
 package com.uta.streamline.controller;
 
 import com.uta.streamline.dto.ProjectDetails;
+import com.uta.streamline.dto.TicketDetails;
 import com.uta.streamline.entities.Project;
 import com.uta.streamline.entities.Ticket;
 import com.uta.streamline.entities.User;
@@ -39,10 +40,5 @@ public class ProjectController {
     @GetMapping("/getUsersByProject/{projectId}")
     public List<User> getUsersByProject(@PathVariable String projectId) {
         return projectService.getUsersByProjectId(Long.parseLong(projectId));
-    }
-
-    @GetMapping("/getTicketsByProject/{projectId}")
-    public List<Ticket> getTicketsByProject(@PathVariable String projectId) {
-        return projectService.getTicketsByProjectId(Long.parseLong(projectId));
     }
 }

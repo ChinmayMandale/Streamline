@@ -1,12 +1,15 @@
 package com.uta.streamline.service;
 
+import com.uta.streamline.dto.CommentDetails;
 import com.uta.streamline.dto.ProjectDetails;
 import com.uta.streamline.dto.TicketDetails;
+import com.uta.streamline.entities.Comment;
 import com.uta.streamline.entities.Project;
 import com.uta.streamline.entities.Ticket;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.enums.Priority;
 import com.uta.streamline.enums.Status;
+import com.uta.streamline.repository.ProjectRepository;
 import com.uta.streamline.repository.TicketRepository;
 import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -23,6 +26,7 @@ import java.util.Optional;
 public class TicketServiceImpl {
     private final TicketRepository ticketRepository;
     private final UserServiceImpl userService;
+    private final ProjectRepository projectRepository;
 
     public TicketDetails create(TicketDetails ticketDetails) {
         Ticket ticket = new Ticket();
@@ -116,5 +120,33 @@ public class TicketServiceImpl {
         ticketDetails.setSummary(ticket.getSummary());
         ticketDetails.setDueDate(ticket.getDueDate());
         return ticketDetails;
+    }
+
+    public List<TicketDetails> getTicketsByProjectId(Long projectId) {
+        List<Ticket> tickets = projectRepository.findById(projectId).get().getTickets();
+        List<TicketDetails> ticketDetailsList = new ArrayList<>();
+        for (Ticket ticket : tickets) {
+            ticketDetailsList.add(mapTicketToTicketDetails(ticket));
+        }
+        return ticketDetailsList;
+    }
+
+    public List<CommentDetails> getCommentsByTicket(Long ticketId) {
+        List<Comment> comments = ticketRepository.getById(ticketId).getComments();
+        List<CommentDetails> commentDetailsList = new ArrayList<>();
+        for (Comment comment : comments) {
+            commentDetailsList.add(mapCommentToCommentDetails(comment));
+        }
+        return commentDetailsList;
+    }
+
+    private CommentDetails mapCommentToCommentDetails(Comment comment) {
+        CommentDetails commentDetails = new CommentDetails();
+        commentDetails.setCommentId(comment.getCommentId());
+        commentDetails.setTicket(comment.getTicket());
+        commentDetails.setCommentText(comment.getCommentText());
+        commentDetails.setTimestamp(comment.getTimestamp());
+        commentDetails.setUser(comment.getUser());
+        return commentDetails;
     }
 }

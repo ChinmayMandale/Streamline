@@ -2,7 +2,6 @@ package com.uta.streamline.service;
 
 import com.uta.streamline.dto.ProjectDetails;
 import com.uta.streamline.entities.Project;
-import com.uta.streamline.entities.Ticket;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
@@ -48,10 +47,5 @@ public class ProjectServiceImpl {
     public List<User> getUsersByProjectId(Long projectId) {
         Optional<Project> optional = projectRepository.findById(projectId);
         return optional.get().getUsers();
-    }
-
-    public List<Ticket> getTicketsByProjectId(Long projectId) {
-        Optional<Project> optional = projectRepository.findById(projectId);
-        return optional.get().getTickets();
     }
 }

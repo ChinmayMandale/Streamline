@@ -22,7 +22,4 @@ public class Project {
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Ticket> tickets;
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Comment> comments;
 }

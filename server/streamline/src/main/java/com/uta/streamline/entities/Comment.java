@@ -21,6 +21,6 @@ public class Comment {
     @JoinColumn (name = "user_id", nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn (name = "project_id", nullable = false)
-    private Project project;
+    @JoinColumn (name = "ticket_id", nullable = false)
+    private Ticket ticket;
 }

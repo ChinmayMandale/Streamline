@@ -1,6 +1,8 @@
 package com.uta.streamline.controller;
 
+import com.uta.streamline.dto.CommentDetails;
 import com.uta.streamline.dto.TicketDetails;
+import com.uta.streamline.entities.Comment;
 import com.uta.streamline.service.TicketServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +44,15 @@ public class TicketController {
     @GetMapping("/getTicketsByAssignedTo/{userId}")
     public List<TicketDetails> getTicketsByAssignedTo(@PathVariable String userId) {
         return ticketService.getTicketsByAssignedTo(Long.parseLong(userId));
+    }
+
+    @GetMapping("/getCommentsByTicket/{ticketId}")
+    public List<CommentDetails> getCommentsByTicket(@PathVariable String ticketId) {
+        return ticketService.getCommentsByTicket(Long.parseLong(ticketId));
+    }
+
+    @GetMapping("/getTicketsByProject/{projectId}")
+    public List<TicketDetails> getTicketsByProject(@PathVariable String projectId) {
+        return ticketService.getTicketsByProjectId(Long.parseLong(projectId));
     }
 }
