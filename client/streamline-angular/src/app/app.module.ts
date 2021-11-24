@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CommonModule } from '@angular/common';
+import { NgSelectModule } from "@ng-select/ng-select";
 
 import { EditComponent } from './ticket/edit/edit.component';
 import { KanbanComponent } from './kanban/kanban.component';
@@ -45,7 +46,8 @@ import { EditProjectComponent } from './project/edit-project/edit-project.compon
     FontAwesomeModule,
     EditorModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
     ],
   providers: [
     {
