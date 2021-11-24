@@ -16,7 +16,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectId;
     private String projectName;
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "projectId", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<User> users;
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY,

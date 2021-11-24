@@ -19,9 +19,7 @@ public class User {
     private String userName;
     private String ticketId;
     private String password;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+    private Long projectId;
     private String email;
     private Instant created;
     private boolean enabled;
