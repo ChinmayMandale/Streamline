@@ -22,6 +22,7 @@ import { EditComponent } from './ticket/edit/edit.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { ProjectComponent } from './project/project.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EditProjectComponent } from './project/edit-project/edit-project.compon
     EditComponent,
     KanbanComponent,
     ProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    UserdashboardComponent
   ],
   imports: [
     BrowserModule,

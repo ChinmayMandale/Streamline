@@ -7,6 +7,7 @@ import { EditComponent } from './ticket/edit/edit.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { ProjectComponent } from './project/project.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'editTicket', component: EditComponent },
   { path: 'kanban', component: KanbanComponent },
   { path: 'project', component: ProjectComponent },
-  { path: 'editProject', component: EditProjectComponent }
+  { path: 'editProject', component: EditProjectComponent },
+  { path: 'userDashboard', component: UserdashboardComponent }
 ];
 
 @NgModule({

@@ -1,10 +1,11 @@
 body {
     background-color: white;
+    height: 50%;
   }
   
   .container {
-    width: 70%;
-    min-width: 50%;
+    width: 90%;
+    min-width: 60%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -19,15 +20,17 @@ body {
   
   .kanban-board {
     display: flex;
+    padding-top: 3em;
     flex-direction: row;
     justify-content: space-between;
     font-family: sans-serif;
+    width: 100%;
   }
   
   .kanban-heading-text {
     font-size: 1.8rem;
-    color: steelblue;
-    background-color: transparent;
+    color: lightcyan;
+    background-color: steelblue;
     border: 1px solid black;
     padding: 0.8rem 1.7rem;
     border-radius: 0.5rem;
@@ -47,17 +50,20 @@ body {
     background-color: white;
     border: 1px solid black;
     color: steelblue;
+    width: 25%;
   }
   
   #inprogress {
     background-color: white;
     border: 1px solid black;
     color: steelblue;
+    width: 25%;
     /* display: none; */
   }
   
   #done {
     background-color: white;
+    width: 25%;
     border: 1px solid black;
     color: steelblue;
     /* display: none; */
