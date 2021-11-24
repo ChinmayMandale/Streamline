@@ -4,12 +4,14 @@ import com.uta.streamline.dto.ProjectDetails;
 import com.uta.streamline.entities.Project;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.repository.ProjectRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProjectServiceImpl {
     private ProjectRepository projectRepository;
 

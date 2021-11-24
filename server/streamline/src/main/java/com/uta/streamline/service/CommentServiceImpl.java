@@ -3,10 +3,12 @@ package com.uta.streamline.service;
 import com.uta.streamline.dto.CommentDetails;
 import com.uta.streamline.entities.Comment;
 import com.uta.streamline.repository.CommentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@AllArgsConstructor
 public class CommentServiceImpl {
     private CommentRepository commentRepository;
 
