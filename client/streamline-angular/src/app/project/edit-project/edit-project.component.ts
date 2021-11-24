@@ -18,7 +18,7 @@ export class EditProjectComponent implements OnInit {
   ngOnInit(): void {
     this.editProjectForm = new FormGroup({
       projectName: new FormControl('', Validators.required),
-      user: new FormControl('', Validators.required)
+      users: new FormControl('', Validators.required)
     });
     this.userService.getAllUsers().subscribe(res => {
       this.users = res;
@@ -26,6 +26,6 @@ export class EditProjectComponent implements OnInit {
   }
 
   submit() {
-
+    console.log(this);
   }
 }
