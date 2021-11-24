@@ -16,6 +16,8 @@ public class ProjectServiceImpl {
     public ProjectDetails createProject(ProjectDetails projectDetails) {
         Project project = new Project();
         project.setProjectName(projectDetails.getProjectName());
+        project.setUsers(projectDetails.getUsers());
+        project.setTickets(projectDetails.getTickets());
         projectDetails.setProjectId(projectRepository.save(project).getProjectId());
         return projectDetails;
     }
