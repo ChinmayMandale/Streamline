@@ -19,6 +19,8 @@ import { CommonModule } from '@angular/common';
 
 import { EditComponent } from './ticket/edit/edit.component';
 import { KanbanComponent } from './kanban/kanban.component';
+import { ProjectComponent } from './project/project.component';
+import { EditProjectComponent } from './project/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { KanbanComponent } from './kanban/kanban.component';
     SignupComponent,
     LoginComponent,
     EditComponent,
-    KanbanComponent
+    KanbanComponent,
+    ProjectComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,
