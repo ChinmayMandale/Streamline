@@ -1,4 +1,4 @@
-export interface CreateEditTicketPayload {
+export interface TicketDTO {
     ticketId: string;
     createDate: Date;
     estimatedTime: number;
