@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="./kanban.component.css">
-    <title>Kanban Board</title>
-</head>
-<body>
+
     <div class="container">
         <div class="kanban-heading">
             <strong class="kanban-heading-text">Kanban Board</strong>
@@ -13,7 +8,7 @@
             <div class="kanban-block" id="todo" (drop)="drop($event)" (dragover)="allowDrop($event)">
                 <strong>To Do</strong>
                 <div class="task-button-block">
-                    <button id="task-button" onclick="createTask()">Create new task </button>
+                    <button id="task-button" routerLink="/editTicket" >Create new task </button>
                 </div>
                 <!-- Get All Tickets -->
                 <!-- NgFor to display -->
@@ -69,5 +64,3 @@
             </div>
         </div>
     </div>
-</body>
-</html>
