@@ -2,6 +2,15 @@
   margin: 100px;
 }
 
+.card-header{
+  background: linear-gradient(to bottom right, #0079d3 0%, #53e3a6 100%);
+}
+
+.form-group{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .sign-up {
   background-color: #0079D3;
   border-color: #0079D3;

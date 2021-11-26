@@ -4,14 +4,15 @@ header{
 
 }
 
+.bg-color{
+  background: linear-gradient(to bottom right, #0079d3 0%, #53e3a6 100%);
+}
+
 .reddit-icon-svg{
-
   height: 50px;
-
   padding: 8px 8px 8px 0;
-
   width: 50px;
-
+  margin-left: 0.5rem;
 }
 
 
@@ -26,7 +27,7 @@ header{
 
   width: 50px;
 
-  color: steelblue;
+  color: black;
 
 }
 
@@ -40,40 +41,24 @@ header{
 
 .login, .sign-up{
 
-  background-color: transparent;
-
+  background-color: white;
   border-color: #0079D3;
-
   color: #0079D3;
-
   fill: #0079D3;
-
   border: 1px solid;
-
   border-radius: 4px;
-
   box-sizing: border-box;
-
   text-align: center;
-
   letter-spacing: 1px;
-
   text-decoration: none;
-
   font-size: 12px;
-
   font-weight: 700;
-
   letter-spacing: .5px;
-
   line-height: 24px;
-
   text-transform: uppercase;
-
-  /* padding: 3px 16px; */
-
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   opacity: 1;
-
   float: right;
 
   position: relative;
