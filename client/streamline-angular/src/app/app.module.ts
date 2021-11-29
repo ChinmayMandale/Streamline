@@ -23,6 +23,7 @@ import { KanbanComponent } from './kanban/kanban.component';
 import { ProjectComponent } from './project/project.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserdashboardComponent } from './userdashboard/userdashboard.component'
     KanbanComponent,
     ProjectComponent,
     EditProjectComponent,
-    UserdashboardComponent
+    UserdashboardComponent,
+    AdmindashboardComponent
   ],
   imports: [
     BrowserModule,

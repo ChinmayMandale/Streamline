@@ -21,6 +21,7 @@
     "@fortawesome/angular-fontawesome": "^0.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@ng-select/ng-select": "^7.4.0",
     "@popperjs/core": "^2.10.2",
     "@tinymce/tinymce-angular": "^4.2.4",
     "bootstrap": "^5.1.3",

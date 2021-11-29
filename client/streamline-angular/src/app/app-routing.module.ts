@@ -8,6 +8,7 @@ import { KanbanComponent } from './kanban/kanban.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { ProjectComponent } from './project/project.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'kanban', component: KanbanComponent },
   { path: 'project', component: ProjectComponent },
   { path: 'editProject', component: EditProjectComponent },
-  { path: 'userDashboard', component: UserdashboardComponent }
+  { path: 'userDashboard', component: UserdashboardComponent },
+  {path: 'adminDashboard', component: AdmindashboardComponent}
 ];
 
 @NgModule({

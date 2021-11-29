@@ -35,16 +35,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Projects</h4>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>99</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Notifications</h4>
-      </div>
-    </div>
+    
     <div class="w3-quarter">
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
@@ -52,31 +43,31 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           <h3>23</h3>
         </div>
         <div class="w3-clear"></div>
-        
-        <h4>Create Ticket</h4>
+        <h4><a routerLink="/signup" class="float-right">Create New User</a></h4>
+    
       </div>
     </div>
+
     <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>50</h3>
+        <div class="w3-container w3-teal w3-padding-16">
+          <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>23</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4><a routerLink="/editProject" class="float-right">Create Project</a></h4>
+      
         </div>
-        <div class="w3-clear"></div>
-        <h4>Data Visualisation</h4> 
       </div>
-    </div>
+    
   </div>
 
-
   <div class="w3-container">
-    <h5>My Tickets</h5>
+    <h5>Projects</h5>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
       <tr>
-        <th>Ticket ID</th>
-        <th>Summary</th>
-        <th>Status</th>
-        <th>Priority</th>
+        <th>Project Name</th>
+        <th>Created Date</th>
       </tr>
     </table><br>
   </div>
