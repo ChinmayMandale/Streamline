@@ -31,6 +31,8 @@ body {
   .kanban-heading-text {
     font-size: 1.8rem;
     color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bolder;
     background: linear-gradient(to bottom right, #0079d3 0%, #53e3a6 100%);
     border: 1px solid black;
     padding: 0.8rem 1.7rem;
@@ -40,6 +42,8 @@ body {
   
   .kanban-block,
   .create-new-task-block {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bolder;
     padding: 0.6rem;
     margin-left: 1rem;
     margin-right: 1rem;
