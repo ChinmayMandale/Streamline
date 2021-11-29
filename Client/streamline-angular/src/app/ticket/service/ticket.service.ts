@@ -11,21 +11,25 @@ export class TicketService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createEditTicket(createEditTicketPayload: TicketDTO): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/ticket/createOrUpdateTicket', 
-    createEditTicketPayload);
+  createEditTicket(createTicketPayload: TicketDTO): Observable<any> {
+    return this.httpClient.post('http://localhost:8080/api/ticket/createTicket', 
+    createTicketPayload);
+  }
+
+  editTicket(id: string, editTicketPayload: TicketDTO): Observable<any> {
+    return this.httpClient.post('http://localhost:8080/api/ticket/updateTicket/' + id, editTicketPayload);
   }
 
   deleteTicket(ticketId: number): Observable<void> {
-    return this.httpClient.delete<void>('http://localhost:8080/api/project/deleteTicket/' + ticketId);
+    return this.httpClient.delete<void>('http://localhost:8080/api/ticket/deleteTicket/' + ticketId);
   }
 
   getAllTickets(): Observable<Array<TicketDTO>> {
-    return this.httpClient.get<Array<TicketDTO>>('http://localhost:8080/api/ticket/getAllTickets');
+    return this.httpClient.get<Array<TicketDTO>>('http://localhost:8080/api/ticket/getAllTickets/');
   }
 
-  getTicketById(ticketId: number): Observable<TicketDTO> {
-    return this.httpClient.get<TicketDTO>('http://localhost:8080/api/ticket/getTicketDetails' + ticketId);
+  getTicketById(ticketId: string): Observable<TicketDTO> {
+    return this.httpClient.get<TicketDTO>('http://localhost:8080/api/ticket/getTicketDetails/' + ticketId);
   }
 
   getTicketsByAssignee(assigneeId: number): Observable<Array<TicketDTO>> {

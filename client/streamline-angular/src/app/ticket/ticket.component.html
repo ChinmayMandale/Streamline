@@ -3,28 +3,28 @@
   <div id="ticket-details">
     <table class="details" border="1">
       <h5 align="right"><b>Ticket Details</b></h5>
-      <a routerLink="/editTicket" class="float-right sign-up mr-2">Edit Ticket</a>
+      <a routerLink="/editTicket/" class="float-right sign-up mr-2">Edit Ticket</a>
 
       <tr>  
-        <td>Project Name  </td><td><!--<input type="text">-->Unassigned</td>
+        <td>Project Name  </td><td><!--<input type="text">-->{{this.ticket.projectName}}</td>
       </tr> 
       <tr>  
-        <td>Create Date </td><td><!--<input type="text">-->Unassigned</td>
+        <td>Create Date </td><td><!--<input type="text">-->{{this.ticket.createDate | date}}</td>
       </tr>
       <tr>  
-        <td>Assignee </td><td><!--<input type="text">-->Unassigned</td>
+        <td>Assignee </td><td><!--<input type="text">-->{{this.ticket.assignee}}</td>
       </tr>
       <tr>  
-        <td>Assigned To </td><td><!--<input type="text">-->Unassigned</td>
+        <td>Assigned To </td><td><!--<input type="text">-->{{this.ticket.assignedTo}}</td>
       </tr>
       <tr>  
-        <td>Status </td><td><!--<input type="text">-->Unassigned</td>
+        <td>Status </td><td><!--<input type="text">-->{{this.ticket.status}}</td>
       </tr>
       <tr>  
-        <td>Due Date </td><td><!--<input type="text">-->Unassigned</td>
+        <td>Due Date </td><td><!--<input type="text">-->{{this.ticket.dueDate | date}}</td>
       </tr>
       <tr>  
-        <td>Priority </td><td><!--<input type="text">-->Unassigned</td>
+        <td>Priority </td><td><!--<input type="text">-->{{this.ticket.priority}}</td>
       </tr>
       
 </table>
@@ -35,7 +35,7 @@
     <dl>
       <h4>DESCRIPTION</h4>
       <dt>
-        Description will come here
+        {{this.ticket.description}}
       </dt>
     </dl>
     <br><br><br><br>

@@ -15,7 +15,7 @@ import { CreateProjectComponent } from './project/create-project/create-project.
 const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'ticket', component: TicketComponent },
+  { path: 'ticket/:id', component: TicketComponent },
   { path: 'editTicket', component: EditComponent },
   { path: 'kanban', component: KanbanComponent },
   { path: 'project', component: ProjectComponent },
