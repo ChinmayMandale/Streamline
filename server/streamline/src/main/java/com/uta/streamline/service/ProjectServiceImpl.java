@@ -5,8 +5,10 @@ import com.uta.streamline.entities.Project;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.repository.ProjectRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +38,22 @@ public class ProjectServiceImpl {
         projectRepository.deleteById(projectId);
     }
 
-    public List<Project> getAllProjects() {
-        return projectRepository.findAll();
+    public List<ProjectDetails> getAllProjects() {
+        List<Project> projects = projectRepository.findAll();
+        List<ProjectDetails> projectDetails = new ArrayList<>();
+        for (Project project : projects) {
+            projectDetails.add(mapProjectToProjectDetails(project));
+        }
+        return projectDetails;
+    }
+
+    private ProjectDetails mapProjectToProjectDetails(Project project) {
+        ProjectDetails projectDetails = new ProjectDetails();
+        projectDetails.setProjectId(project.getProjectId());
+        projectDetails.setProjectName(project.getProjectName());
+        //projectDetails.setTickets(project.getTickets());
+        //projectDetails.setUsers(project.getUsers());
+        return projectDetails;
     }
 
     public Project getProjectByProjectName(String projectName) {

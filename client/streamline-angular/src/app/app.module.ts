@@ -24,6 +24,7 @@ import { ProjectComponent } from './project/project.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { CreateComponent } from './ticket/create/create.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
     ProjectComponent,
     EditProjectComponent,
     UserdashboardComponent,
-    AdmindashboardComponent
+    AdmindashboardComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
