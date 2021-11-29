@@ -10,6 +10,7 @@ import { ProjectComponent } from './project/project.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { CreateComponent } from './ticket/create/create.component';
+import { CreateProjectComponent } from './project/create-project/create-project.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'editProject', component: EditProjectComponent },
   { path: 'userDashboard', component: UserdashboardComponent },
   {path: 'adminDashboard', component: AdmindashboardComponent},
-  { path: 'createTicket', component: CreateComponent }
+  { path: 'createTicket', component: CreateComponent },
+  { path: 'createProject', component: CreateProjectComponent }
 ];
 
 @NgModule({
