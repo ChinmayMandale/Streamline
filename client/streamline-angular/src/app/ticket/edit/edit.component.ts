@@ -1,5 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectComponent } from 'src/app/project/project.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { ProjectDTO } from 'src/app/shared/ProjectDTO';
@@ -10,7 +13,8 @@ import { TicketDTO } from '../shared/TicketDTO';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
+  providers: [DatePipe]
 })
 export class EditComponent implements OnInit {
 
@@ -18,14 +22,15 @@ export class EditComponent implements OnInit {
   projects: Array<ProjectDTO>;
   editTicketForm: FormGroup;
   createEditTicketPayload: TicketDTO;
-  priorityValues = ['high','medium','low'];
-  statusValues = ['open','inprogress','closed'];
+  priorityValues = ['HIGH','MEDIUM','LOW'];
+  statusValues = ['OPEN','IN_PROGRESS','TEST','COMPLETE'];
   assignedToUsers = [];
   projectValues = [];
-
+  id: string;
+  ticket: TicketDTO;
   constructor(private ticketService: TicketService,
     private userService: UserService,
-    private projectService: ProjectService) { 
+    private projectService: ProjectService,private route: ActivatedRoute,private datePipe: DatePipe) { 
     this.createEditTicketPayload = {
       ticketId: '',
       summary: '',
@@ -43,7 +48,25 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.ticketService.getTicketById(this.id).subscribe(res => {
+      this.ticket = res;
+      this.editTicketForm = new FormGroup({
+        summary: new FormControl(this.ticket.summary, Validators.required),
+        projectName: new FormControl(this.ticket.projectName, Validators.required),
+        assignee: new FormControl(this.ticket.assignee, Validators.required),
+        assignedTo: new FormControl(this.ticket.assignedTo, Validators.required),
+        status: new FormControl(this.ticket.status, Validators.required),
+        priority: new FormControl(this.ticket.priority, Validators.required),
+        createDate: new FormControl(this.ticket.createDate),
+        dueDate: new FormControl(this.ticket.dueDate, Validators.required),
+        estimatedTime: new FormControl(this.ticket.estimatedTime, Validators.required),
+        actualTime: new FormControl(this.ticket.actualTime, Validators.required),
+        attachment: new FormControl('', Validators.required),
+        description: new FormControl(this.ticket.description, Validators.required)
+      });
+      console.log(res);
+    })
     this.userService.getAllUsers().subscribe(res => {
       this.users = res;
       this.users.forEach(user => {
@@ -58,20 +81,6 @@ export class EditComponent implements OnInit {
       })
     })
 
-    this.editTicketForm = new FormGroup({
-      summary: new FormControl('', Validators.required),
-      projectName: new FormControl('', Validators.required),
-      assignee: new FormControl('', Validators.required),
-      assignedTo: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required),
-      priority: new FormControl('', Validators.required),
-      createDate: new FormControl('', Validators.required),
-      dueDate: new FormControl('', Validators.required),
-      estimatedTime: new FormControl('', Validators.required),
-      actualTime: new FormControl('', Validators.required),
-      attachment: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required)
-    });
   }
 
   onFileChange(event) {

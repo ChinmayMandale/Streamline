@@ -4,6 +4,7 @@ import com.uta.streamline.dto.ProjectDetails;
 import com.uta.streamline.entities.Project;
 import com.uta.streamline.entities.User;
 import com.uta.streamline.repository.ProjectRepository;
+import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,15 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ProjectServiceImpl {
     private ProjectRepository projectRepository;
-
+    private UserRepository userRepository;
     public ProjectDetails createProject(ProjectDetails projectDetails) {
         Project project = new Project();
         project.setProjectName(projectDetails.getProjectName());
         project.setUsers(projectDetails.getUsers());
         project.setTickets(projectDetails.getTickets());
         projectDetails.setProjectId(projectRepository.save(project).getProjectId());
+        List<User> users = projectDetails.getUsers();
+        mapUsersToProject(users, projectDetails.getProjectId());
         return projectDetails;
     }
 
@@ -30,10 +33,20 @@ public class ProjectServiceImpl {
         Project project = projectRepository.getById(projectDetails.getProjectId());
         project.setProjectName(projectDetails.getProjectName());
         project.setTickets(projectDetails.getTickets());
+        List<User> users = projectDetails.getUsers();
+        mapUsersToProject(users, projectDetails.getProjectId());
         project.setUsers(projectDetails.getUsers());
         projectRepository.save(project);
         return projectDetails;
     }
+
+    private void mapUsersToProject(List<User> users, Long projectId) {
+        for (User user : users) {
+            user.setProjectId(projectId);
+            userRepository.save(user);
+        }
+    }
+
     public void deleteProject(Long projectId) {
         projectRepository.deleteById(projectId);
     }

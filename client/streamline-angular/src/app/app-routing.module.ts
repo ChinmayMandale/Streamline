@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'login', component: LoginComponent },
   { path: 'ticket/:id', component: TicketComponent },
-  { path: 'editTicket', component: EditComponent },
+  { path: 'editTicket/:id', component: EditComponent },
   { path: 'kanban', component: KanbanComponent },
   { path: 'project', component: ProjectComponent },
   { path: 'editProject', component: EditProjectComponent },
