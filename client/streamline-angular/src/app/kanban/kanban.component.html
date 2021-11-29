@@ -30,9 +30,12 @@
         
 
 
-        <div class="kanban-block" id="test" (drop)="drop($event)" (dragover)="allowDrop($event)">
-            <strong>Test</strong>
-        </div>
+            <div class="kanban-block" id="test" (drop)="drop($event)" (dragover)="allowDrop($event)">
+                <strong>Test</strong>
+                <div class="task" id="task1" draggable="true" (dragstart)="drag($event)" *ngFor="let ticket of testTickets">
+                    <span>{{ticket.summary}}</span>
+                </div>
+            </div>
 
 
             <div class="kanban-block" id="done" (drop)="drop($event)" (dragover)="allowDrop($event)">
