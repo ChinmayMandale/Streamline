@@ -13,6 +13,7 @@ import com.uta.streamline.repository.ProjectRepository;
 import com.uta.streamline.repository.TicketRepository;
 import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -30,7 +31,21 @@ public class TicketServiceImpl {
 
     public TicketDetails create(TicketDetails ticketDetails) {
         Ticket ticket = new Ticket();
+        setTicketInfoFromDTO(ticketDetails, ticket);
+        Ticket createdTicket = ticketRepository.save(ticket);
+        ticketDetails.setTicketId(createdTicket.getTicketId());
+        return ticketDetails;
+    }
 
+    public TicketDetails update(Long ticketId, TicketDetails ticketDetails) {
+        Ticket ticket = ticketRepository.getById(ticketId);
+        setTicketInfoFromDTO(ticketDetails, ticket);
+        Ticket updatedTicket = ticketRepository.save(ticket);
+        return ticketDetails;
+    }
+
+    @NotNull
+    private void setTicketInfoFromDTO(TicketDetails ticketDetails, Ticket ticket) {
         ticket.setAssignee(userService.findByUsername(ticketDetails.getAssignee()));
         ticket.setAssignedTo(userService.findByUsername(ticketDetails.getAssignedTo()));
         ticket.setCreateDate(ticketDetails.getCreateDate());
@@ -43,33 +58,6 @@ public class TicketServiceImpl {
         ticket.setSummary(ticketDetails.getSummary());
         ticket.setProject(projectRepository.findByProjectName(ticketDetails.getProjectName()));
 
-        Ticket createdTicket = ticketRepository.save(ticket);
-        ticketDetails.setTicketId(createdTicket.getTicketId());
-        return ticketDetails;
-    }
-
-    public TicketDetails createOrUpdate(TicketDetails ticketDetails) {
-        Ticket ticket = null;
-        if (!Objects.isNull(ticketDetails.getTicketId())) {
-            ticket = ticketRepository.getById(ticketDetails.getTicketId());
-        }
-        else {
-            ticket = new Ticket();
-        }
-        ticket.setAssignee(userService.findByUsername(ticketDetails.getAssignee()));
-        ticket.setAssignedTo(userService.findByUsername(ticketDetails.getAssignedTo()));
-        ticket.setCreateDate(ticketDetails.getCreateDate());
-        ticket.setDescription(ticketDetails.getDescription());
-        ticket.setDueDate(ticketDetails.getDueDate());
-        ticket.setEstimatedTime(ticketDetails.getEstimatedTime());
-        ticket.setActualTime(ticketDetails.getActualTime());
-        ticket.setPriority(Priority.valueOf(ticketDetails.getPriority()));
-        ticket.setStatus(Status.valueOf(ticketDetails.getStatus()));
-        ticket.setSummary(ticketDetails.getSummary());
-
-        Ticket createdTicket = ticketRepository.save(ticket);
-        ticketDetails.setTicketId(createdTicket.getTicketId());
-        return ticketDetails;
     }
 
     public List<TicketDetails> getAllTickets() {
@@ -120,6 +108,8 @@ public class TicketServiceImpl {
         ticketDetails.setDescription(ticket.getDescription());
         ticketDetails.setSummary(ticket.getSummary());
         ticketDetails.setDueDate(ticket.getDueDate());
+        ticketDetails.setCreateDate(ticket.getCreateDate());
+        ticketDetails.setProjectName(ticket.getProject().getProjectName());
         return ticketDetails;
     }
 

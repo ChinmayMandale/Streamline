@@ -15,9 +15,14 @@ import java.util.List;
 public class TicketController {
     private TicketServiceImpl ticketService;
 
-    @PostMapping("/createOrUpdateTicket")
-    public TicketDetails createOrUpdateTicket(@RequestBody TicketDetails ticketDetails) {
+    @PostMapping("/createTicket")
+    public TicketDetails createTicket(@RequestBody TicketDetails ticketDetails) {
         return ticketService.create(ticketDetails);
+    }
+
+    @PostMapping("/updateTicket/{ticketId}")
+    public TicketDetails createOrUpdateTicket(@PathVariable String ticketId, @RequestBody TicketDetails ticketDetails) {
+        return ticketService.update(Long.parseLong(ticketId), ticketDetails);
     }
 
     @DeleteMapping("/deleteTicket/{ticketId}")

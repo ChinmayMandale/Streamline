@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TicketService } from './service/ticket.service';
+import { TicketDTO } from './shared/TicketDTO';
 
 @Component({
   selector: 'app-ticket',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  ticket: TicketDTO
+
+  constructor(
+    private ticketService: TicketService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.ticketService.getTicketById(this.id).subscribe(res => {
+      debugger;
+      this.ticket = res;
+      console.log(res);
+    })
   }
 
 }
