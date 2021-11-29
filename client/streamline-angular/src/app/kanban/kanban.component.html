@@ -13,30 +13,33 @@
                 <!-- Get All Tickets -->
                 <!-- NgFor to display -->
                 <!-- When we drag and drop, update ticket details call should be made to update ticket status -->
-                <div class="task" id="task1" draggable="true" (dragstart)="drag($event)">
-                    <span>Task 1</span>
+                
+                <div class="task" id="task1" draggable="true" (dragstart)="drag($event)" *ngFor="let ticket of toDoTickets">
+                    <span>{{ticket.summary}}</span>
                 </div>
-                <div class="task" id="task2" draggable="true" (dragstart)="drag($event)">
-                    <span>Task 2</span>
-                </div>
-                <div class="task" id="task3" draggable="true" (dragstart)="drag($event)">
-                    <span>Task 3</span>
-                </div>
-                <div class="task" id="task4" draggable="true" (dragstart)="drag($event)">
-                    <span>Task 4</span>
-                </div>
-                <div class="task" id="task5" draggable="true" (dragstart)="drag($event)">
-                    <span>Task 5</span>
-                </div>
-                <div class="task" id="task6" draggable="true" (dragstart)="drag($event)">
-                    <span>Task 6</span>
-                </div>
+                
+    
+              
             </div>
             <div class="kanban-block" id="inprogress" (drop)="drop($event)" (dragover)="allowDrop($event)">
                 <strong>In Progress</strong>
+                <div class="task" id="task1" draggable="true" (dragstart)="drag($event)" *ngFor="let ticket of inProgressTickets">
+                    <span>{{ticket.summary}}</span>
+                </div>
             </div>
+        
+
+
+        <div class="kanban-block" id="test" (drop)="drop($event)" (dragover)="allowDrop($event)">
+            <strong>Test</strong>
+        </div>
+
+
             <div class="kanban-block" id="done" (drop)="drop($event)" (dragover)="allowDrop($event)">
                 <strong>Done</strong>
+                <div class="task" id="task1" draggable="true" (dragstart)="drag($event)" *ngFor="let ticket of closedTickets">
+                    <span>{{ticket.summary}}</span>
+                </div>
             </div>
             <div class="create-new-task-block" id="create-new-task-block">
                 <strong>New Task</strong>

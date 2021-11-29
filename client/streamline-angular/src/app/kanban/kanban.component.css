@@ -68,6 +68,13 @@ body {
     width: 25%;
     /* display: none; */
   }
+
+  #test {
+    background-color: white;
+    width: 25%;
+    border: 1px solid black;
+    color: black;
+  }
   
   #done {
     background-color: white;

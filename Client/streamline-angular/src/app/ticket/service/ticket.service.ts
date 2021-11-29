@@ -21,7 +21,7 @@ export class TicketService {
   }
 
   getAllTickets(): Observable<Array<TicketDTO>> {
-    return this.httpClient.get<Array<TicketDTO>>('http://localhost:8080/api/ticket/getAllTickets');
+    return this.httpClient.get<Array<TicketDTO>>('http://localhost:8080/api/ticket/getAllTickets/');
   }
 
   getTicketById(ticketId: number): Observable<TicketDTO> {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TicketService } from '../ticket/service/ticket.service';
+import { TicketDTO } from '../ticket/shared/TicketDTO';
 
 @Component({
   selector: 'app-kanban',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KanbanComponent implements OnInit {
 
-  constructor() { }
+  tickets: Array<TicketDTO>
+  toDoTickets: Array<TicketDTO>
+  inProgressTickets: Array<TicketDTO>
+  testTickets: Array<TicketDTO>
+  closedTickets: Array<TicketDTO>
+
+
+  constructor(private ticketService: TicketService) {
+    
+  }
 
   ngOnInit(): void {
+    this.ticketService.getAllTickets().subscribe(res => {
+      debugger;
+      this.tickets=res;
+      this.toDoTickets=this.tickets.filter(ticket =>ticket.status=="OPEN");
+      this.inProgressTickets=this.tickets.filter(ticket =>ticket.status=="IN_PROGRESS");
+      this.testTickets=this.tickets.filter(ticket =>ticket.status=="TEST");
+      this.closedTickets=this.tickets.filter(ticket =>ticket.status=="CLOSED");
+      console.log(res);
+    })
   }
 
   allowDrop(ev) {
