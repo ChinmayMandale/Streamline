@@ -10,4 +10,5 @@ export interface TicketDTO {
     summary: string;
     description: string;
     priority: string;
+    projectName: string;
 }

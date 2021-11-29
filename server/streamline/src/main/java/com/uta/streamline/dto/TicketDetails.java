@@ -22,4 +22,5 @@ public class TicketDetails {
     private String summary;
     private String description;
     private String priority;
+    private String projectName;
 }

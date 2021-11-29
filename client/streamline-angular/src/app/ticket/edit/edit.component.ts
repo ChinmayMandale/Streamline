@@ -37,7 +37,8 @@ export class EditComponent implements OnInit {
       description: '',
       dueDate: new Date,
       priority: '',
-      status: ''
+      status: '',
+      projectName: ''
     };
   }
 
@@ -59,7 +60,7 @@ export class EditComponent implements OnInit {
 
     this.editTicketForm = new FormGroup({
       summary: new FormControl('', Validators.required),
-      projects: new FormControl('', Validators.required),
+      projectName: new FormControl('', Validators.required),
       assignee: new FormControl('', Validators.required),
       assignedTo: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
@@ -93,6 +94,7 @@ export class EditComponent implements OnInit {
     this.createEditTicketPayload.actualTime = this.editTicketForm.get('actualTime').value;
     this.createEditTicketPayload.priority = this.editTicketForm.get('priority').value;
     this.createEditTicketPayload.status = this.editTicketForm.get('status').value;
+    this.createEditTicketPayload.projectName = this.editTicketForm.get('projectName').value;
 
     this.ticketService.createEditTicket(this.createEditTicketPayload).subscribe(res => {
       console.log(res);

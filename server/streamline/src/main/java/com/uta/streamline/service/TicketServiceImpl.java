@@ -41,6 +41,7 @@ public class TicketServiceImpl {
         ticket.setPriority(Priority.HIGH);
         ticket.setStatus(Status.OPEN);
         ticket.setSummary(ticketDetails.getSummary());
+        ticket.setProject(projectRepository.findByProjectName(ticketDetails.getProjectName()));
 
         Ticket createdTicket = ticketRepository.save(ticket);
         ticketDetails.setTicketId(createdTicket.getTicketId());

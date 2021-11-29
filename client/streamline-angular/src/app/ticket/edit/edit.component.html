@@ -12,7 +12,7 @@
                     </div>
                     <div class="form-group row">
                         <label>Project Name :</label>
-                        <select [formControlName]="'projects'" id="project">
+                        <select [formControlName]="'projectName'" id="project">
                             <option value="default">----</option>
                             <option *ngFor="let project of projectValues" [value]="project">
                                 {{project}}
