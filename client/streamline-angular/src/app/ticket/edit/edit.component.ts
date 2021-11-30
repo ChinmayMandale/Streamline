@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -13,8 +12,7 @@ import { TicketDTO } from '../shared/TicketDTO';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css'],
-  providers: [DatePipe]
+  styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
 
@@ -30,7 +28,7 @@ export class EditComponent implements OnInit {
   ticket: TicketDTO;
   constructor(private ticketService: TicketService,
     private userService: UserService,
-    private projectService: ProjectService,private route: ActivatedRoute,private datePipe: DatePipe) { 
+    private projectService: ProjectService,private route: ActivatedRoute) { 
     this.createEditTicketPayload = {
       ticketId: '',
       summary: '',
@@ -51,6 +49,8 @@ export class EditComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.ticketService.getTicketById(this.id).subscribe(res => {
       this.ticket = res;
+      let cdate = new Date(this.ticket.createDate);
+      let ddate = new Date(this.ticket.dueDate);
       this.editTicketForm = new FormGroup({
         summary: new FormControl(this.ticket.summary, Validators.required),
         projectName: new FormControl(this.ticket.projectName, Validators.required),
@@ -58,8 +58,8 @@ export class EditComponent implements OnInit {
         assignedTo: new FormControl(this.ticket.assignedTo, Validators.required),
         status: new FormControl(this.ticket.status, Validators.required),
         priority: new FormControl(this.ticket.priority, Validators.required),
-        createDate: new FormControl(this.ticket.createDate),
-        dueDate: new FormControl(this.ticket.dueDate, Validators.required),
+        createDate: new FormControl(cdate.toISOString().split("T")[0], Validators.required),
+        dueDate: new FormControl(ddate.toISOString().split("T")[0], Validators.required),
         estimatedTime: new FormControl(this.ticket.estimatedTime, Validators.required),
         actualTime: new FormControl(this.ticket.actualTime, Validators.required),
         attachment: new FormControl('', Validators.required),
@@ -105,7 +105,7 @@ export class EditComponent implements OnInit {
     this.createEditTicketPayload.status = this.editTicketForm.get('status').value;
     this.createEditTicketPayload.projectName = this.editTicketForm.get('projectName').value;
 
-    this.ticketService.createEditTicket(this.createEditTicketPayload).subscribe(res => {
+    this.ticketService.editTicket(this.id,this.createEditTicketPayload).subscribe(res => {
       console.log(res);
     })
   }

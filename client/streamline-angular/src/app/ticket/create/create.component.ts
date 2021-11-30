@@ -18,8 +18,8 @@ export class CreateComponent implements OnInit {
   projects: Array<ProjectDTO>;
   editTicketForm: FormGroup;
   createEditTicketPayload: TicketDTO;
-  priorityValues = ['high','medium','low'];
-  statusValues = ['open','inprogress','closed'];
+  priorityValues = ['HIGH','MEDIUM','LOW'];
+  statusValues = ['OPEN','IN_PROGRESS','TEST','COMPLETE'];
   assignedToUsers = [];
   projectValues = [];
 

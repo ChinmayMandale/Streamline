@@ -53,8 +53,8 @@ public class TicketServiceImpl {
         ticket.setDueDate(ticketDetails.getDueDate());
         ticket.setEstimatedTime(ticketDetails.getEstimatedTime());
         ticket.setActualTime(ticketDetails.getActualTime());
-        ticket.setPriority(Priority.HIGH);
-        ticket.setStatus(Status.OPEN);
+        ticket.setPriority(Priority.valueOf(ticketDetails.getPriority()));
+        ticket.setStatus(Status.valueOf(ticketDetails.getStatus()));
         ticket.setSummary(ticketDetails.getSummary());
         ticket.setProject(projectRepository.findByProjectName(ticketDetails.getProjectName()));
 
