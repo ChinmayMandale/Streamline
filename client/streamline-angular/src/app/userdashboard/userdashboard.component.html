@@ -46,7 +46,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
     </div>
     <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
+      
+      <div routerLink="/createTicket" class="w3-container w3-teal w3-padding-16">
+        
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3>23</h3>
@@ -54,6 +56,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div class="w3-clear"></div>
         
         <h4>Create Ticket</h4>
+        
       </div>
     </div>
     <div class="w3-quarter">
@@ -71,13 +74,26 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-container">
     <h5>My Tickets</h5>
+    <h5>{{this.username}}</h5>
+
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <thead>
       <tr>
         <th>Ticket ID</th>
+        
         <th>Summary</th>
         <th>Status</th>
         <th>Priority</th>
       </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.ticketId}}</td>
+        <td>{{ticket.summary}}</td>
+          <td>{{ticket.status}}</td>
+          <td>{{ticket.priority}}</td>
+        </tr>
+      </tbody>
     </table><br>
   </div>
   <br>

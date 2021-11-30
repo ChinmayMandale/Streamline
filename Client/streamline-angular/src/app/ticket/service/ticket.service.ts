@@ -37,7 +37,7 @@ export class TicketService {
   }
 
   getTicketsByAssignedTo(assignedToId: number): Observable<Array<TicketDTO>> {
-    return this.httpClient.get<Array<TicketDTO>>('http://localhost:8080/api/ticket/getTicketsByAssignedTo' + assignedToId);
+    return this.httpClient.get<Array<TicketDTO>>('http://localhost:8080/api/ticket/getTicketsByAssignedTo/' + assignedToId);
   }
 
   getCommentsByTicketId(ticketId: number): Observable<Array<CommentsDTO>> {

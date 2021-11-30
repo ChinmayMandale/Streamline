@@ -9,7 +9,7 @@ import { TicketDTO } from '../ticket/shared/TicketDTO';
 })
 export class KanbanComponent implements OnInit {
 
-  tickets: Array<TicketDTO>
+  tickets: Array<TicketDTO> 
   toDoTickets: Array<TicketDTO>
   inProgressTickets: Array<TicketDTO>
   testTickets: Array<TicketDTO>

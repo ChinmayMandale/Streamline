@@ -27,6 +27,7 @@ import java.util.Optional;
 public class TicketServiceImpl {
     private final TicketRepository ticketRepository;
     private final UserServiceImpl userService;
+    private final UserRepository userRepository;
     private final ProjectRepository projectRepository;
 
     public TicketDetails create(TicketDetails ticketDetails) {
@@ -70,7 +71,8 @@ public class TicketServiceImpl {
     }
 
     public List<TicketDetails> getTicketsByAssignee(Long userId) {
-        Optional<List<Ticket>> ticketsOptional = ticketRepository.findTicketByAssignee(userId);
+        User user = userRepository.getById(userId);
+        Optional<List<Ticket>> ticketsOptional = ticketRepository.findTicketByAssignee(user);
         List<TicketDetails> ticketDetailsList = new ArrayList<>();
         for (Ticket ticket : ticketsOptional.get()) {
             ticketDetailsList.add(mapTicketToTicketDetails(ticket));
@@ -79,7 +81,8 @@ public class TicketServiceImpl {
     }
 
     public List<TicketDetails> getTicketsByAssignedTo(Long userId) {
-        Optional<List<Ticket>> ticketsOptional = ticketRepository.findTicketByAssignedTo(userId);
+        User user = userRepository.getById(userId);
+        Optional<List<Ticket>> ticketsOptional = ticketRepository.findTicketByAssignedTo(user);
         List<TicketDetails> ticketDetailsList = new ArrayList<>();
         for (Ticket ticket : ticketsOptional.get()) {
             ticketDetailsList.add(mapTicketToTicketDetails(ticket));
