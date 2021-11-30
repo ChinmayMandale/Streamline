@@ -22,6 +22,11 @@ public class ProjectController {
         return projectService.getAllProjects();
     }
 
+    @GetMapping("/getProjectByProjectId/{projectId}")
+    public ProjectDetails getProjectByProjectId(@PathVariable String projectId) {
+        return projectService.getProjectById(Long.valueOf(projectId));
+    }
+
     @PostMapping("/updateProject")
     public ProjectDetails updateProject(@RequestBody ProjectDetails projectDetails) {
         return projectService.updateProject(projectDetails);

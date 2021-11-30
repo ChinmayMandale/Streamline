@@ -73,8 +73,8 @@ public class ProjectServiceImpl {
         return projectRepository.findByProjectName(projectName);
     }
 
-    public Project getProjectById(Long projectId) {
-        return projectRepository.findById(projectId).get();
+    public ProjectDetails getProjectById(Long projectId) {
+        return mapProjectToProjectDetails(projectRepository.findById(projectId).get());
     }
 
     public List<User> getUsersByProjectId(Long projectId) {
