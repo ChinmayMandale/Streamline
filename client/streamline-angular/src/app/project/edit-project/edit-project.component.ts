@@ -5,6 +5,7 @@ import { UserDTO } from 'src/app/shared/UserDTO';
 import { UserService } from 'src/app/services/user.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProjectDTO } from 'src/app/shared/ProjectDTO';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-project',
@@ -16,9 +17,11 @@ export class EditProjectComponent implements OnInit {
   editProjectForm: FormGroup;
   selected: any;
   projectDTO: ProjectDTO;
-
+  id: string;
+  project:ProjectDTO;
+  userDTOs:Array<UserDTO>;
   constructor(private userService: UserService,
-    private projectService: ProjectService) { 
+    private projectService: ProjectService,private route: ActivatedRoute) { 
       this.projectDTO = {
         projectName: '',
         users: [],
@@ -28,9 +31,16 @@ export class EditProjectComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.editProjectForm = new FormGroup({
-      projectName: new FormControl('', Validators.required),
-      users: new FormControl('', Validators.required)
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.projectService.getProjectByProjectId(this.id).subscribe(res => {
+      debugger;
+      this.project = res;
+      console.log(res);
+      //this.userDTOs = this.project.users;
+      this.editProjectForm = new FormGroup({
+        projectName: new FormControl(this.project.projectName, Validators.required),
+        users: new FormControl('', Validators.required)
+      });
     });
     this.userService.getAllUsers().subscribe(res => {
       this.users = res;
@@ -38,11 +48,11 @@ export class EditProjectComponent implements OnInit {
   }
 
   submit() {
-    debugger
+    this.projectDTO.projectId = this.id;
     this.projectDTO.projectName = this.editProjectForm.value.projectName;
     this.projectDTO.users = this.editProjectForm.value.users;
 
-    this.projectService.createProject(this.projectDTO).subscribe(res => {
+    this.projectService.updateProject(this.projectDTO).subscribe(res => {
       debugger;
       console.log(res);
     })

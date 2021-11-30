@@ -30,4 +30,7 @@ export class ProjectService {
     return this.httpClient.post<ProjectDTO>('http://localhost:8080/api/project/updateProject', project);
   }
 
+  getProjectByProjectId(projectId: string): Observable<ProjectDTO> {
+    return this.httpClient.get<ProjectDTO>('http://localhost:8080/api/project/getProjectByProjectId/' + projectId);
+  }
 }

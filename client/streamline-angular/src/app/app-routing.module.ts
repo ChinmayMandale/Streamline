@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'editTicket/:id', component: EditComponent },
   { path: 'kanban', component: KanbanComponent },
   { path: 'project', component: ProjectComponent },
-  { path: 'editProject', component: EditProjectComponent },
+  { path: 'editProject/:id', component: EditProjectComponent },
   { path: 'userDashboard', component: UserdashboardComponent },
   {path: 'adminDashboard', component: AdmindashboardComponent},
   { path: 'createTicket', component: CreateComponent },
