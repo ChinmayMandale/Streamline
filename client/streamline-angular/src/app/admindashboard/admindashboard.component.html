@@ -74,8 +74,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </thead>
     <tbody>
       <tr *ngFor="let project of projects">
+      <td routerLink="/kanban">{{project.projectName}}</td>
       <td>{{project.projectId}}</td>
-      <td>{{project.projectName}}</td>
       </tr>
     </tbody>
     </table><br>
