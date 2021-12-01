@@ -5,6 +5,7 @@ import { UserDTO } from 'src/app/shared/UserDTO';
 import { UserService } from 'src/app/services/user.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProjectDTO } from 'src/app/shared/ProjectDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-project',
@@ -19,7 +20,8 @@ export class CreateProjectComponent implements OnInit {
   projectDTO: ProjectDTO;
 
   constructor(private userService: UserService,
-    private projectService: ProjectService) { 
+    private projectService: ProjectService,
+    private router: Router) { 
       this.projectDTO = {
         projectName: '',
         users: [],
@@ -44,7 +46,8 @@ export class CreateProjectComponent implements OnInit {
     this.projectDTO.users = this.editProjectForm.value.users;
 
     this.projectService.createProject(this.projectDTO).subscribe(res => {
-      debugger;
+      this.router.navigate(['/adminDashboard'],
+      { queryParams: { registered: 'true' } });
       console.log(res);
     })
     console.log(this);
