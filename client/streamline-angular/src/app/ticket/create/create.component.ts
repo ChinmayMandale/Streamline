@@ -6,6 +6,7 @@ import { ProjectDTO } from 'src/app/shared/ProjectDTO';
 import { UserDTO } from 'src/app/shared/UserDTO';
 import { TicketService } from '../service/ticket.service';
 import { TicketDTO } from '../shared/TicketDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -25,6 +26,7 @@ export class CreateComponent implements OnInit {
 
   constructor(private ticketService: TicketService,
     private userService: UserService,
+    private router: Router,
     private projectService: ProjectService) { 
     this.createEditTicketPayload = {
       ticketId: '',
@@ -97,8 +99,11 @@ export class CreateComponent implements OnInit {
     this.createEditTicketPayload.projectName = this.editTicketForm.get('projectName').value;
 
     this.ticketService.createEditTicket(this.createEditTicketPayload).subscribe(res => {
+      this.router.navigate(['/ticket/'+res.ticketId])
       console.log(res);
-    })
+      
+    }
+    )
   }
 
 
