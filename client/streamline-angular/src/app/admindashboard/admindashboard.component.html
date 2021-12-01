@@ -64,11 +64,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-container">
     <h5>Projects</h5>
+    
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <thead>
       <tr>
         <th>Project Name</th>
-        <th>Created Date</th>
+        <th>Project ID</th>
       </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+      <td>{{project.projectId}}</td>
+      <td>{{project.projectName}}</td>
+      </tr>
+    </tbody>
     </table><br>
   </div>
   <br>

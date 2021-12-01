@@ -11,7 +11,7 @@ export class ProjectService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Array<ProjectDTO>> {
-    return this.httpClient.get<Array<ProjectDTO>>('http://localhost:8080/api/project/getAllProjects');
+    return this.httpClient.get<Array<ProjectDTO>>('http://localhost:8080/api/project/getAllProjects/');
   }
 
   getProjectByUserName(username: string): Observable<ProjectDTO> {
