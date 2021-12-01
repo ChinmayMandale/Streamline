@@ -18,18 +18,18 @@ export class DatavizComponent implements OnInit {
 
   private tickets: any;
   private ticketMap = [
-    {"status": "OPEN", "value": "20"},
-    {"status": "IN_PROGRESS", "value": "20"},
-    {"status": "TEST", "value": "20"},
-    {"status": "CLOSED", "value": "20"},
+    {"status": "OPEN", "value": ""},
+    {"status": "IN_PROGRESS", "value": ""},
+    {"status": "TEST", "value": ""},
+    {"status": "COMPLETE", "value": ""},
   ]
-  private data = [
-    {"Framework": "Vue", "Stars": "25", "Released": "2014"},
-    {"Framework": "React", "Stars": "25", "Released": "2013"},
-    {"Framework": "Angular", "Stars": "50", "Released": "2016"},
-    {"Framework": "Backbone", "Stars": "20", "Released": "2010"},
-    {"Framework": "Ember", "Stars": "10", "Released": "2011"},
-  ];
+  // private data = [
+  //   {"Framework": "Vue", "Stars": "25", "Released": "2014"},
+  //   {"Framework": "React", "Stars": "25", "Released": "2013"},
+  //   {"Framework": "Angular", "Stars": "50", "Released": "2016"},
+  //   {"Framework": "Backbone", "Stars": "20", "Released": "2010"},
+  //   {"Framework": "Ember", "Stars": "10", "Released": "2011"},
+  // ];
   private svg;
   private margin = 50;
   private width = 750;
@@ -78,21 +78,21 @@ export class DatavizComponent implements OnInit {
         this.toDoTickets=this.tickets.filter(ticket =>ticket.status=="OPEN");
         this.inProgressTickets=this.tickets.filter(ticket =>ticket.status=="IN_PROGRESS");
         this.testTickets=this.tickets.filter(ticket =>ticket.status=="TEST");
-        this.doneTickets=this.tickets.filter(ticket =>ticket.status=="CLOSED");
+        this.doneTickets=this.tickets.filter(ticket =>ticket.status=="COMPLETE");
 
-        // this.ticketMap[0].value = this.toDoTickets.length.toString();
-        // this.ticketMap[1].value = this.inProgressTickets.length.toString();
-        // this.ticketMap[2].value = this.testTickets.length.toString();
-        // this.ticketMap[3].value = this.doneTickets.length.toString();
+        this.ticketMap[0].value = this.toDoTickets.length.toString();
+        this.ticketMap[1].value = this.inProgressTickets.length.toString();
+        this.ticketMap[2].value = this.testTickets.length.toString();
+        this.ticketMap[3].value = this.doneTickets.length.toString();
 
         console.log(this.ticketMap);
-        console.log(this.data);
+
+        this.createSvg();
+        this.createColors();
+        this.drawChart();
       })
     });
 
-    this.createSvg();
-    this.createColors();
-    this.drawChart();
   }
 
   private createSvg(): void {
@@ -110,7 +110,7 @@ export class DatavizComponent implements OnInit {
   private createColors(): void {
     this.colors = d3.scaleOrdinal()
     .domain(this.ticketMap.map(d => d.value.toString()))
-    .range(["#c7d3ec", "#a5b8db", "#879cc4", "#677795"]);
+    .range(["#693dd1", "#3dd191", "#d92b3a", "#e6cd10"]);
   }
 
   private drawChart(): void {
