@@ -86,7 +86,7 @@ public class NotificationServiceImpl {
         String date = sdf.format(ticket.getDueDate());
         String text = "A new Ticket has been assigned to you that is due on " + date + " : Ticket "+
                 ticket.getTicketId() + " and with status " + ticket.getStatus();
-        createNotification(NotificationType.ASSIGNED, text, user, ticket.getDueDate());
+        createNotification(NotificationType.ASSIGNED, text, user, ticket.getCreateDate());
     }
 
     private void createApproachingDeadlineNotification(Ticket ticket, User user) {
