@@ -27,8 +27,8 @@ const routes: Routes = [
   { path: 'createTicket', component: CreateComponent },
   { path: 'createProject', component: CreateProjectComponent },
   { path: 'data-visualization', component: DatavizComponent},
-  { path: '', component: UserdashboardComponent },
-  { path: 'notification', component: NotificationComponent }
+  { path: 'notification', component: NotificationComponent },
+  { path: '', component: UserdashboardComponent }
 ];
 
 @NgModule({
