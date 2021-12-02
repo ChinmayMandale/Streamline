@@ -27,6 +27,7 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 import { CreateComponent } from './ticket/create/create.component';
 import { CreateProjectComponent } from './project/create-project/create-project.component';
 import { DatavizComponent } from './userdashboard/dataviz/dataviz.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DatavizComponent } from './userdashboard/dataviz/dataviz.component';
     AdmindashboardComponent,
     CreateComponent,
     CreateProjectComponent,
-    DatavizComponent
+    DatavizComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
