@@ -88,10 +88,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </thead>
       <tbody>
         <tr *ngFor="let ticket of tickets">
-        <td routerLink="/kanban">{{ticket.ticketId}}</td>
-        <td routerLink="/kanban">{{ticket.summary}}</td>
-          <td routerLink="/kanban">{{ticket.status}}</td>
-          <td routerLink="/kanban">{{ticket.priority}}</td>
+        <td [routerLink]="['/ticket', ticket.ticketId]">{{ticket.ticketId}}</td>
+        <td [routerLink]="['/ticket', ticket.ticketId]">{{ticket.summary}}</td>
+          <td [routerLink]="['/ticket', ticket.ticketId]">{{ticket.status}}</td>
+          <td [routerLink]="['/ticket', ticket.ticketId]">{{ticket.priority}}</td>
         </tr>
       </tbody>
     </table><br>
