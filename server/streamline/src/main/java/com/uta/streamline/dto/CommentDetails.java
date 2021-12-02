@@ -8,14 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDetails {
     private Long commentId;
-    private Timestamp timestamp;
+    private Date timestamp;
     private String commentText;
-    private User user;
-    private Ticket ticket;
+    private String userName;
+    private String ticketId;
 }

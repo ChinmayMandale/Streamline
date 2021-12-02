@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -15,10 +16,10 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
-    private Timestamp timestamp;
+    private Date timestamp;
     private String commentText;
     @ManyToOne
-    @JoinColumn (name = "user_id", nullable = false)
+    @JoinColumn (name = "user_id")
     private User user;
     @ManyToOne
     @JoinColumn (name = "ticket_id", nullable = false)

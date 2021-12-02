@@ -6,7 +6,6 @@ import com.uta.streamline.entities.User;
 import com.uta.streamline.repository.ProjectRepository;
 import com.uta.streamline.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

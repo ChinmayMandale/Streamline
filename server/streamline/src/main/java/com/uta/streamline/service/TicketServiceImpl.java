@@ -137,10 +137,10 @@ public class TicketServiceImpl {
     private CommentDetails mapCommentToCommentDetails(Comment comment) {
         CommentDetails commentDetails = new CommentDetails();
         commentDetails.setCommentId(comment.getCommentId());
-        commentDetails.setTicket(comment.getTicket());
+        commentDetails.setTicketId(comment.getTicket().getTicketId().toString());
         commentDetails.setCommentText(comment.getCommentText());
         commentDetails.setTimestamp(comment.getTimestamp());
-        commentDetails.setUser(comment.getUser());
+        commentDetails.setUserName(comment.getUser() != null ? comment.getUser().getUserName() : null);
         return commentDetails;
     }
 }

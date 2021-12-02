@@ -2,9 +2,9 @@ import { TicketDTO } from "../ticket/shared/TicketDTO";
 import { UserDTO } from "./UserDTO";
 
 export interface CommentsDTO {
-    commentId: number,
+    commentId: string,
     timestamp: Date,
     commentText: string,
-    user: UserDTO,
-    ticket: TicketDTO,
+    userName: string,
+    ticketId: string,
 }

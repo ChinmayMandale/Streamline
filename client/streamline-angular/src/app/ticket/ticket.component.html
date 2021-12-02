@@ -1,5 +1,6 @@
-<body>  
-  
+<!DOCTYPE html>
+<html lang="en">
+<body>
   <div id="ticket-details">
     <table class="details" border="1">
       <h5 align="right"><b>Ticket Details</b></h5>
@@ -26,33 +27,39 @@
       <tr>  
         <td>Priority </td><td><!--<input type="text">-->{{this.ticket.priority}}</td>
       </tr>
-      
-</table>
-</div>
+  </table>
+  </div>
 
 <div id="ticket-description">
   <table class="description">
     <dl>
-      <h4>DESCRIPTION</h4>
-      <dt>
+      <h4>Description</h4>
+      <dt class="dt">
         {{this.ticket.description}}
       </dt>
     </dl>
-    <br><br><br><br>
-    <p>Activity</p>
-    <p>Show:</p><button>Comments</button><br><br>
-    <textarea rows="1" cols="50"></textarea><br><br>
-    <button>History</button>
-
   </table>
-</div>
-
-<div id="comments-section">
-  <table class="comments">
-    <dl>
-      <h4>Comments</h4>
-      <input type="text" placeholder="Add a comment...">
-    </dl>
-  </table>
+  <br><br><br><br>
+  <h5 style="color: black;font-weight:10px;">Comment Section :</h5><br>
+  <form>
+    <div *ngIf="commentList?.length > 0">
+      <table>
+      <div *ngFor="let comment of commentList">
+          <tr>
+            <td><textarea id="updateComment" value="updateComment" class="update-comment" (change)="change($event)">{{comment.commentText}}</textarea></td>
+            <td class="update-comment-date">{{comment.timestamp | date:"MM-dd-yyyy hh:mm:ss"}}</td>
+            <td class="update-comment-user">{{comment.userName}}</td>
+            <td><button class="update-button" type="submit" name="update" (click)="update(comment, $event)">Update</button></td>
+            <td><button class="delete-button" type="submit" name="delete" (click)="delete(comment)">Delete</button></td>
+          </tr>
+      </div>
+    </table>
+    </div>
+  </form>
+  <form [formGroup]="addCommentForm" (ngSubmit)="submit()">
+    <textarea class="form-control" [formControlName]="'comment'" class="comment" placeholder="Drop a comment...">
+    </textarea><br>
+    <button type="submit" name="submit" style="margin-bottom: 30px;margin-left: 20px;">Submit</button>
+</form>
 </div>
 </body>

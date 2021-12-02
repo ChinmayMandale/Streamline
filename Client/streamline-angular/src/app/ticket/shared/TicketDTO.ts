@@ -1,3 +1,5 @@
+import { CommentsDTO } from "src/app/shared/CommentDTO";
+
 export interface TicketDTO {
     ticketId: string;
     createDate: Date;

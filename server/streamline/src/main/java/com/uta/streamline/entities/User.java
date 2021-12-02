@@ -24,7 +24,4 @@ public class User {
     private Instant created;
     private boolean enabled;
     private boolean isAdmin;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Comment> comments;
 }

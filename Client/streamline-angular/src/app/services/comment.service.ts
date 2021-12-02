@@ -10,15 +10,19 @@ export class CommentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createProject(comment: CommentsDTO): Observable<CommentsDTO> {
+  createComment(comment: CommentsDTO): Observable<CommentsDTO> {
     return this.httpClient.post<CommentsDTO>('http://localhost:8080/api/comment/createComment', comment);
   }
 
-  deleteComment(commentId: number): Observable<void> {
+  deleteComment(commentId: string): Observable<void> {
     return this.httpClient.delete<void>('http://localhost:8080/api/comment/deleteComment/' + commentId);
   }
 
-  updateProject(comment: CommentsDTO): Observable<CommentsDTO> {
+  updateComment(comment: CommentsDTO): Observable<CommentsDTO> {
     return this.httpClient.post<CommentsDTO>('http://localhost:8080/api/comment/updateComment', comment);
+  }
+
+  getCommentsByTicketId(ticketId: string): Observable<[CommentsDTO]> {
+    return this.httpClient.get<[CommentsDTO]>('http://localhost:8080/api/ticket/getCommentsByTicket/' + ticketId);
   }
 }
