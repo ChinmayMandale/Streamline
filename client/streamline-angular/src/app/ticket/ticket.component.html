@@ -4,7 +4,7 @@
   <div id="ticket-details">
     <table class="details" border="1">
       <h5 align="right"><b>Ticket Details</b></h5>
-      <a routerLink="/editTicket/" class="float-right sign-up mr-2">Edit Ticket</a>
+      <a [routerLink]="['/editTicket/', this.ticket.ticketId]" class="float-right sign-up mr-2">Edit Ticket</a>
 
       <tr>  
         <td>Project Name  </td><td><!--<input type="text">-->{{this.ticket.projectName}}</td>
