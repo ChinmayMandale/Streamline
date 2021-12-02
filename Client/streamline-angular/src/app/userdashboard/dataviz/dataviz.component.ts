@@ -5,6 +5,7 @@ import * as d3Shape from 'd3';
 import * as d3Array from 'd3';
 import * as d3Axis from 'd3';
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { DatavizService } from 'src/app/services/dataviz.service';
 import { UserService } from 'src/app/services/user.service';
 import { TicketService } from 'src/app/ticket/service/ticket.service';
 import { TicketDTO } from 'src/app/ticket/shared/TicketDTO';
@@ -17,26 +18,13 @@ import { TicketDTO } from 'src/app/ticket/shared/TicketDTO';
 export class DatavizComponent implements OnInit {
 
   private tickets: any;
-  private ticketMap = [
+  private ticketMapPieChart = [
     {"status": "OPEN", "value": ""},
     {"status": "IN_PROGRESS", "value": ""},
     {"status": "TEST", "value": ""},
     {"status": "COMPLETE", "value": ""},
   ]
-  // private data = [
-  //   {"Framework": "Vue", "Stars": "25", "Released": "2014"},
-  //   {"Framework": "React", "Stars": "25", "Released": "2013"},
-  //   {"Framework": "Angular", "Stars": "50", "Released": "2016"},
-  //   {"Framework": "Backbone", "Stars": "20", "Released": "2010"},
-  //   {"Framework": "Ember", "Stars": "10", "Released": "2011"},
-  // ];
-  private svg;
-  private margin = 50;
-  private width = 750;
-  private height = 600;
-  // The radius of the pie chart is half the smallest side
-  private radius = Math.min(this.width, this.height) / 2 - this.margin;
-  private colors;
+  
   private toDoTickets: Array<TicketDTO>;
   private inProgressTickets: Array<TicketDTO>;
   private testTickets: Array<TicketDTO>;
@@ -64,7 +52,8 @@ export class DatavizComponent implements OnInit {
 
   constructor(private userService: UserService,
               private authService: AuthService,
-              private ticketService: TicketService) {
+              private ticketService: TicketService,
+              private dataVizService: DatavizService) {
     // this.width = 960 - this.margin.left - this.margin.right;
     // this.height = 500 - this.margin.top - this.margin.bottom;
   }
@@ -80,71 +69,17 @@ export class DatavizComponent implements OnInit {
         this.testTickets=this.tickets.filter(ticket =>ticket.status=="TEST");
         this.doneTickets=this.tickets.filter(ticket =>ticket.status=="COMPLETE");
 
-        this.ticketMap[0].value = this.toDoTickets.length.toString();
-        this.ticketMap[1].value = this.inProgressTickets.length.toString();
-        this.ticketMap[2].value = this.testTickets.length.toString();
-        this.ticketMap[3].value = this.doneTickets.length.toString();
+        this.ticketMapPieChart[0].value = this.toDoTickets.length.toString();
+        this.ticketMapPieChart[1].value = this.inProgressTickets.length.toString();
+        this.ticketMapPieChart[2].value = this.testTickets.length.toString();
+        this.ticketMapPieChart[3].value = this.doneTickets.length.toString();
 
-        console.log(this.ticketMap);
-
-        this.createSvg();
-        this.createColors();
-        this.drawChart();
+        this.dataVizService.createSvgForPieChart();
+        this.dataVizService.createColorsForPieChart(this.ticketMapPieChart);
+        this.dataVizService.drawPieChart(this.ticketMapPieChart);
       })
     });
 
-  }
-
-  private createSvg(): void {
-    this.svg = d3.select("figure#pie")
-    .append("svg")
-    .attr("width", this.width)
-    .attr("height", this.height)
-    .append("g")
-    .attr(
-      "transform",
-      "translate(" + this.width / 2 + "," + this.height / 2 + ")"
-    );
-}
-
-  private createColors(): void {
-    this.colors = d3.scaleOrdinal()
-    .domain(this.ticketMap.map(d => d.value.toString()))
-    .range(["#693dd1", "#3dd191", "#d92b3a", "#e6cd10"]);
-  }
-
-  private drawChart(): void {
-    // Compute the position of each group on the pie:
-    const pie = d3.pie<any>().value((d: any) => Number(d.value));
-
-    // Build the pie chart
-    this.svg
-    .selectAll('pieces')
-    .data(pie(this.ticketMap))
-    .enter()
-    .append('path')
-    .attr('d', d3.arc()
-      .innerRadius(0)
-      .outerRadius(this.radius)
-    )
-    .attr('fill', (d, i) => (this.colors(i)))
-    .attr("stroke", "#121926")
-    .style("stroke-width", "1px");
-
-    // Add labels
-    const labelLocation = d3.arc()
-    .innerRadius(100)
-    .outerRadius(this.radius);
-
-    this.svg
-    .selectAll('pieces')
-    .data(pie(this.ticketMap))
-    .enter()
-    .append('text')
-    .text(d => d.status)
-    .attr("transform", d => "translate(" + labelLocation.centroid(d) + ")")
-    .style("text-anchor", "middle")
-    .style("font-size", 15);
   }
 
 

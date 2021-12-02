@@ -27,7 +27,7 @@ export class KanbanComponent implements OnInit {
       this.toDoTickets=this.tickets.filter(ticket =>ticket.status=="OPEN");
       this.inProgressTickets=this.tickets.filter(ticket =>ticket.status=="IN_PROGRESS");
       this.testTickets=this.tickets.filter(ticket =>ticket.status=="TEST");
-      this.closedTickets=this.tickets.filter(ticket =>ticket.status=="CLOSED");
+      this.closedTickets=this.tickets.filter(ticket =>ticket.status=="COMPLETE");
       console.log(res);
     })
   }
