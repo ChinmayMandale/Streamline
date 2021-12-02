@@ -33,7 +33,6 @@ export class EditProjectComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.projectService.getProjectByProjectId(this.id).subscribe(res => {
-      debugger;
       this.project = res;
       console.log(res);
       //this.userDTOs = this.project.users;
@@ -53,7 +52,6 @@ export class EditProjectComponent implements OnInit {
     this.projectDTO.users = this.editProjectForm.value.users;
 
     this.projectService.updateProject(this.projectDTO).subscribe(res => {
-      debugger;
       console.log(res);
     })
     console.log(this);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectComponent } from 'src/app/project/project.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
@@ -28,7 +28,9 @@ export class EditComponent implements OnInit {
   ticket: TicketDTO;
   constructor(private ticketService: TicketService,
     private userService: UserService,
-    private projectService: ProjectService,private route: ActivatedRoute) { 
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router) { 
     this.createEditTicketPayload = {
       ticketId: '',
       summary: '',
@@ -104,8 +106,10 @@ export class EditComponent implements OnInit {
     this.createEditTicketPayload.priority = this.editTicketForm.get('priority').value;
     this.createEditTicketPayload.status = this.editTicketForm.get('status').value;
     this.createEditTicketPayload.projectName = this.editTicketForm.get('projectName').value;
+    this.createEditTicketPayload.ticketId = this.id;
 
     this.ticketService.editTicket(this.id,this.createEditTicketPayload).subscribe(res => {
+      this.router.navigate(['/ticket/'+res.ticketId])
       console.log(res);
     })
   }
