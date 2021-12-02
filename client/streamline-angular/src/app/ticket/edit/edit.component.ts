@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 import { ProjectComponent } from 'src/app/project/project.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
@@ -24,13 +25,15 @@ export class EditComponent implements OnInit {
   statusValues = ['OPEN','IN_PROGRESS','TEST','COMPLETE'];
   assignedToUsers = [];
   projectValues = [];
+  currentUser = [];
   id: string;
   ticket: TicketDTO;
   constructor(private ticketService: TicketService,
     private userService: UserService,
     private projectService: ProjectService,
     private route: ActivatedRoute,
-    private router: Router) { 
+    private router: Router,
+    private authService: AuthService) { 
     this.createEditTicketPayload = {
       ticketId: '',
       summary: '',
@@ -73,6 +76,9 @@ export class EditComponent implements OnInit {
       this.users = res;
       this.users.forEach(user => {
         this.assignedToUsers.push(user.userName);
+        if (user.userName == this.authService.getUserName()) {
+          this.currentUser.push(user.userName);
+        }
       })
     })
 

@@ -7,6 +7,7 @@ import { UserDTO } from 'src/app/shared/UserDTO';
 import { TicketService } from '../service/ticket.service';
 import { TicketDTO } from '../shared/TicketDTO';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -23,11 +24,13 @@ export class CreateComponent implements OnInit {
   statusValues = ['OPEN','IN_PROGRESS','TEST','COMPLETE'];
   assignedToUsers = [];
   projectValues = [];
+  currentUser = [];
 
   constructor(private ticketService: TicketService,
     private userService: UserService,
     private router: Router,
-    private projectService: ProjectService) { 
+    private projectService: ProjectService,
+    private authService: AuthService) { 
     this.createEditTicketPayload = {
       ticketId: '',
       summary: '',
@@ -50,6 +53,9 @@ export class CreateComponent implements OnInit {
       this.users = res;
       this.users.forEach(user => {
         this.assignedToUsers.push(user.userName);
+        if (user.userName == this.authService.getUserName()) {
+          this.currentUser.push(user.userName);
+        }
       })
     })
 

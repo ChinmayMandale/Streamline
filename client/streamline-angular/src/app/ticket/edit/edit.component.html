@@ -24,7 +24,7 @@
                         <label>Assignee :</label>
                         <select [formControlName]="'assignee'" id="assignee">
                             <option value="default">----</option>
-                            <option *ngFor="let user of assignedToUsers" [value]="user">
+                            <option *ngFor="let user of currentUser" [value]="user">
                                 {{user}}
                             </option>
                         </select>
