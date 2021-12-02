@@ -34,7 +34,6 @@ export class EditProjectComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.projectService.getProjectByProjectId(this.id).subscribe(res => {
       this.project = res;
-      console.log(res);
       //this.userDTOs = this.project.users;
       this.editProjectForm = new FormGroup({
         projectName: new FormControl(this.project.projectName, Validators.required),
@@ -52,8 +51,6 @@ export class EditProjectComponent implements OnInit {
     this.projectDTO.users = this.editProjectForm.value.users;
 
     this.projectService.updateProject(this.projectDTO).subscribe(res => {
-      console.log(res);
     })
-    console.log(this);
   }
 }

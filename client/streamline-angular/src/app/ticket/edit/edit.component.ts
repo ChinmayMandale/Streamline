@@ -26,6 +26,9 @@ export class EditComponent implements OnInit {
   assignedToUsers = [];
   projectValues = [];
   currentUser = [];
+  selectedAssignee = '';
+  selectedAssignedTo = '';
+  selectedProject = '';
   id: string;
   ticket: TicketDTO;
   constructor(private ticketService: TicketService,
@@ -70,7 +73,8 @@ export class EditComponent implements OnInit {
         attachment: new FormControl('', Validators.required),
         description: new FormControl(this.ticket.description, Validators.required)
       });
-      console.log(res);
+      this.selectedAssignedTo = this.ticket.assignedTo;
+      this.selectedProject = this.ticket.projectName;
     })
     this.userService.getAllUsers().subscribe(res => {
       this.users = res;
@@ -78,6 +82,7 @@ export class EditComponent implements OnInit {
         this.assignedToUsers.push(user.userName);
         if (user.userName == this.authService.getUserName()) {
           this.currentUser.push(user.userName);
+          this.selectedAssignee = user.userName;
         }
       })
     })
@@ -116,7 +121,6 @@ export class EditComponent implements OnInit {
 
     this.ticketService.editTicket(this.id,this.createEditTicketPayload).subscribe(res => {
       this.router.navigate(['/ticket/'+res.ticketId])
-      console.log(res);
     })
   }
 }

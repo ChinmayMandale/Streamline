@@ -106,7 +106,6 @@ export class CreateComponent implements OnInit {
 
     this.ticketService.createEditTicket(this.createEditTicketPayload).subscribe(res => {
       this.router.navigate(['/ticket/'+res.ticketId])
-      console.log(res);
       
     }
     )

@@ -50,7 +50,6 @@ export class TicketComponent implements OnInit {
   }
 
   submit() {
-    console.log( this.addCommentForm.get('comment').value);
     this.commentDTO.commentText = this.addCommentForm.get('comment').value;
     this.commentDTO.timestamp = new Date();
     this.commentDTO.ticketId = this.id;
@@ -67,21 +66,16 @@ export class TicketComponent implements OnInit {
   }
 
   update(comment: CommentsDTO, val: any) {
-    console.log(comment);
     this.commentDTO.commentText = this.commentText;
     this.commentDTO.commentId = comment.commentId;
     this.commentDTO.timestamp = new Date();
     this.commentDTO.ticketId = this.id;
     this.commentDTO.userName = this.authService.getUserName();
-    console.log(this.commentDTO);
     this.commentService.updateComment(this.commentDTO).subscribe(res => {
-      console.log(res);
     });
   }
   delete(comment : CommentsDTO) {
-    console.log(comment);
     this.commentService.deleteComment(comment.commentId).subscribe(res => {
-      console.log(res);
     });
   }
   change(val : any): any {

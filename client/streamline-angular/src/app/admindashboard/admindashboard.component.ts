@@ -18,7 +18,6 @@ export class AdmindashboardComponent implements OnInit {
   ngOnInit(): void {
     this.projectservice.getAllProjects().subscribe(val => {
       this.projects = val;
-      console.log(this.projects);
   })
 }
 

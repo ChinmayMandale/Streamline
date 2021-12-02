@@ -14,7 +14,7 @@
                         <label>Project Name :</label>
                         <select [formControlName]="'projectName'" id="project">
                             <option value="default">----</option>
-                            <option *ngFor="let project of projectValues" [value]="project">
+                            <option *ngFor="let project of projectValues" [value]="project" [attr.selected]="selectedProject==project ? true : null">
                                 {{project}}
                             </option>
                         </select>
@@ -24,7 +24,7 @@
                         <label>Assignee :</label>
                         <select [formControlName]="'assignee'" id="assignee">
                             <option value="default">----</option>
-                            <option *ngFor="let user of currentUser" [value]="user">
+                            <option *ngFor="let user of currentUser" [value]="user" [attr.selected]="selectedAssignee==user ? true : null">
                                 {{user}}
                             </option>
                         </select>
@@ -34,7 +34,7 @@
                         <label>Assign To :</label>
                         <select [formControlName]="'assignedTo'" id="assignedTo">
                             <option value="default">----</option>
-                            <option *ngFor="let user of assignedToUsers" [value]="user">
+                            <option *ngFor="let user of assignedToUsers" [value]="user" [attr.selected]="selectedAssignedTo==user ? true : null">
                                 {{user}}
                             </option>
                         </select>

@@ -47,9 +47,7 @@ export class CreateProjectComponent implements OnInit {
     this.projectService.createProject(this.projectDTO).subscribe(res => {
       this.router.navigate(['/adminDashboard'],
       { queryParams: { registered: 'true' } });
-      console.log(res);
     })
-    console.log(this);
   }
 
 

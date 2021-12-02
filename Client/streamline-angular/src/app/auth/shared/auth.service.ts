@@ -66,7 +66,6 @@ export class AuthService {
       .subscribe(data => {
         // window.location.reload();
         this.router.navigateByUrl('/login');
-        console.log(data);
       }, error => {
         throwError(error);
       })

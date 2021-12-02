@@ -28,7 +28,6 @@ export class UserdashboardComponent implements OnInit {
       this.userid = res.userId;
       this.ticketservice.getTicketsByAssignedTo(this.userid).subscribe(val => {
         this.tickets = val;
-        console.log(this.tickets);
 
       })
     });
