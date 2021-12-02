@@ -1,18 +1,15 @@
 # Streamline - Project Management Tool
 ----------
-CONTENTS OF THIS FILE
+Contents
 ---------------------
-* INTRODUCTION
-* SOFTWARES USED
-* REQUIREMENTS
-* RECOMMENDED MODULES
-* INSTALLATION
-* TROUBLLESHHOTING
-* FAQ
-* MAINTAINERS
+* Introduction
+* Softwares Used
+* Installation
+* User Infrastructure
+* How to use the website
 
 
-## INTRODUCTION
+## Introduction
 ------------
 The project management tool will enable project teams to efficiently manage and distribute tasks to concerned developers and testers. This tool will be built using java based framework as the backend technology and javascript for the UI side of the project. The basic functionalities for this project will cover login portal for users, project and ticket creation page, user dashboard with data analytics tab, Kanban board and project dashboard. Users can access this tool to create/ modify tickets, work on their assigned tickets, collaborate with other members and  stakeholders, keep track of project backlog, and manage deliverables.
 
@@ -84,3 +81,5 @@ npm install
 * Create New User page will contain registration of new users by the admin.
 
 * By clicking on the project from the admin dashboard, it will redirect to Kanban board of that project where the Kanboard will show the list of tickets in that project according to the status of the tickets. 
+ 
+
