@@ -22,7 +22,6 @@ export class KanbanComponent implements OnInit {
 
   ngOnInit(): void {
     this.ticketService.getAllTickets().subscribe(res => {
-      debugger;
       this.tickets=res;
       this.toDoTickets=this.tickets.filter(ticket =>ticket.status=="OPEN");
       this.inProgressTickets=this.tickets.filter(ticket =>ticket.status=="IN_PROGRESS");

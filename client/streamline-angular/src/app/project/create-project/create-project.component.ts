@@ -41,7 +41,6 @@ export class CreateProjectComponent implements OnInit {
   }
 
   submit() {
-    debugger
     this.projectDTO.projectName = this.editProjectForm.value.projectName;
     this.projectDTO.users = this.editProjectForm.value.users;
 

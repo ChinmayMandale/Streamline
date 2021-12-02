@@ -25,7 +25,6 @@ export class UserdashboardComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.authservice.getUserName();
     this.userservice.getUserByUserName(this.username).subscribe(res => {
-      debugger;
       this.userid = res.userId;
       this.ticketservice.getTicketsByAssignedTo(this.userid).subscribe(val => {
         this.tickets = val;
