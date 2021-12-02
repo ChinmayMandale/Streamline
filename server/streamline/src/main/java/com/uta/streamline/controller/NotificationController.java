@@ -1,5 +1,6 @@
 package com.uta.streamline.controller;
 
+import com.uta.streamline.dto.NotificationDetails;
 import com.uta.streamline.entities.Notification;
 import com.uta.streamline.service.NotificationServiceImpl;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class NotificationController {
     private NotificationServiceImpl notificationService;
 
     @GetMapping("/getByUsername/{username}")
-    public List<Notification> getByUsername(@PathVariable String username) {
+    public List<NotificationDetails> getByUsername(@PathVariable String username) {
         return notificationService.getNotificationsByUser(username);
     }
 }
