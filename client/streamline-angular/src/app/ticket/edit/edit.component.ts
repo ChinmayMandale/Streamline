@@ -75,24 +75,27 @@ export class EditComponent implements OnInit {
       });
       this.selectedAssignedTo = this.ticket.assignedTo;
       this.selectedProject = this.ticket.projectName;
-    })
-    this.userService.getAllUsers().subscribe(res => {
-      this.users = res;
-      this.users.forEach(user => {
-        this.assignedToUsers.push(user.userName);
-        if (user.userName == this.authService.getUserName()) {
-          this.currentUser.push(user.userName);
-          this.selectedAssignee = user.userName;
-        }
-      })
-    })
+      this.currentUser.push(this.ticket.assignee);
+      this.selectedAssignee = this.ticket.assignee;
 
-    this.projectService.getAllProjects().subscribe(res => {
-      this.projects = res;
-      this.projects.forEach(project => {
-        this.projectValues.push(project.projectName);
+      this.userService.getAllUsers().subscribe(res => {
+        this.users = res;
+        this.users.forEach(user => {
+          this.assignedToUsers.push(user.userName);
+          
+
+          this.projectService.getAllProjects().subscribe(res => {
+            this.projects = res;
+            this.projects.forEach(project => {
+              this.projectValues.push(project.projectName);
+            })
+          })
+        })
       })
     })
+    
+
+    
 
   }
 

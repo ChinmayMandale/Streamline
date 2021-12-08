@@ -22,7 +22,7 @@ export class ProjectService {
     return this.httpClient.post<ProjectDTO>('http://localhost:8080/api/project/createProject', project);
   }
 
-  deleteProject(projectId: number): Observable<void> {
+  deleteProject(projectId: string): Observable<void> {
     return this.httpClient.delete<void>('http://localhost:8080/api/project/deleteProject/' + projectId);
   }
 

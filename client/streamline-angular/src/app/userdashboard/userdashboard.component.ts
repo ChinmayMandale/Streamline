@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth/shared/auth.service';
 import { UserService } from '../services/user.service';
 import { TicketService } from '../ticket/service/ticket.service';
@@ -17,20 +18,28 @@ export class UserdashboardComponent implements OnInit {
 
   constructor(private authservice: AuthService,
     private userservice: UserService,
-    private ticketservice: TicketService
+    private ticketservice: TicketService,
+    private router: Router
   ) {
 
   }
 
   ngOnInit(): void {
     this.username = this.authservice.getUserName();
-    this.userservice.getUserByUserName(this.username).subscribe(res => {
-      this.userid = res.userId;
-      this.ticketservice.getTicketsByAssignedTo(this.userid).subscribe(val => {
-        this.tickets = val;
-
-      })
-    });
+    if(!this.username) {
+      this.router.navigateByUrl('/login');
+    } else if (this.username === 'admin') {
+      this.router.navigateByUrl('/adminDashboard');
+    } else{
+      this.userservice.getUserByUserName(this.username).subscribe(res => {
+        this.userid = res.userId;
+        this.ticketservice.getTicketsByAssignedTo(this.userid).subscribe(val => {
+          this.tickets = val;
+  
+        })
+      });
+    }
+    
   }
 
 }

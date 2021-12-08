@@ -35,7 +35,7 @@ export class DatavizService {
   public createColorsForPieChart(ticketMapStatusToValues: any): void {
     this.colors = d3.scaleOrdinal()
     .domain(ticketMapStatusToValues.map(d => d.value.toString()))
-    .range(["#3dd191", "#693dd1", "#e6cd10", "#d92b3a"]);
+    .range(["#34e3ac", "#0079d3", "#34a9e3", "#3734e3"]);
   }
 
   public drawPieChart(ticketMapStatusToValues: any): void {

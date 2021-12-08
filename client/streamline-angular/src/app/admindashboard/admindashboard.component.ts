@@ -21,4 +21,12 @@ export class AdmindashboardComponent implements OnInit {
   })
 }
 
+  deleteProject(projectId: string) {
+    this.projectservice.deleteProject(projectId).subscribe(val => {
+      console.log("The project was deleted successfully!");
+      window.location.reload();
+
+  })
+  }
+
 }

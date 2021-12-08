@@ -72,6 +72,7 @@ export class TicketComponent implements OnInit {
     this.commentDTO.ticketId = this.id;
     this.commentDTO.userName = this.authService.getUserName();
     this.commentService.updateComment(this.commentDTO).subscribe(res => {
+      this.commentDTO = res;
     });
   }
   delete(comment : CommentsDTO) {
